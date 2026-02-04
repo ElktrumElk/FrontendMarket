@@ -1,8 +1,9 @@
 :root {
     --bg-color: whitesmoke;
     --forground-el-cl: white;
-    --nav-link-cl: rgb(176, 173, 173);
+    --nav-link-cl: rgb(211, 209, 209);
     --text-cl: black;
+    --card-bg: rgba(241, 239, 239, 0.904);
 
 }
 
@@ -10,29 +11,40 @@
 body.dark {
     --bg-color: rgb(15, 15, 15);
     --forground-el-cl: rgb(35, 34, 34);
+    --nav-link-cl: rgb(50, 49, 49);
+
 }
 
 body {
+
     background-color: var(--bg-color);
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-x: hidden;
+
 }
 
 .app {
-    width: 100%;
+    
+    width: 99dvw;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1rem;
+    overflow-x: hidden;
+
 }
 
 .head {
-
-    width: 90%;
+    flex: 0 0 auto;
+    width: 99%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: 3rem;
+    position: sticky;
+    top: 0;
 
 
 }
@@ -53,8 +65,8 @@ body {
 
 .search_cnt {
 
-    width: 3rem;
-    height: 3rem;
+    width: 2rem;
+    height: 2rem;
     background-color: var(--forground-el-cl);
     border-radius: 6rem;
     display: flex;
@@ -65,20 +77,59 @@ body {
 }
 
 .searc_icon {
-    width: 3rem;
-    height: 3rem;
+    width: 2rem;
+    height: 2rem;
 }
 
 .section_links {
-    width: 90%;
+    width: 100%;
     padding: .3rem .3rem;
     display: flex;
     gap: .5rem;
+    overflow-x: auto;
 }
 
 .links {
+    flex: 0 0 auto;
     padding: .5rem 1rem;
     background-color: var(--nav-link-cl);
     text-decoration: none;
     color: var(--text-cl);
+    font-family: sans-serif;
+    border-radius: 2rem;
+    font-size: 1.1rem;
 }
+
+
+.main {
+
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+
+    gap: 1rem;
+    overflow: hidden;
+}
+
+.template_card {
+
+    width: 99%;
+    height: 20rem;
+    background-color: var(--card-bg);
+    border: 1px solid gray;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0rem;
+    margin: 0;
+
+}
+
+.prev {
+    width: 90%;
+    height: 12rem;
+    background-color: black;
+    border-radius: 1.5rem;
+}
+
