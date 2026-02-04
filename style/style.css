@@ -1,0 +1,84 @@
+:root {
+    --bg-color: whitesmoke;
+    --forground-el-cl: white;
+    --nav-link-cl: rgb(176, 173, 173);
+    --text-cl: black;
+
+}
+
+
+body.dark {
+    --bg-color: rgb(15, 15, 15);
+    --forground-el-cl: rgb(35, 34, 34);
+}
+
+body {
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.app {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.head {
+
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 3rem;
+
+
+}
+
+.logoName {
+
+    margin: 0;
+    font-family: sans-serif;
+    font-size: 1.4rem;
+    padding: 1rem 2rem;
+    background-color: var(--forground-el-cl);
+    border: 1px solid rgb(99, 99, 99);
+    display: flex;
+    align-items: center;
+    border-radius: 3rem;
+
+}
+
+.search_cnt {
+
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--forground-el-cl);
+    border-radius: 6rem;
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    place-items: center;
+    overflow: hidden;
+}
+
+.searc_icon {
+    width: 3rem;
+    height: 3rem;
+}
+
+.section_links {
+    width: 90%;
+    padding: .3rem .3rem;
+    display: flex;
+    gap: .5rem;
+}
+
+.links {
+    padding: .5rem 1rem;
+    background-color: var(--nav-link-cl);
+    text-decoration: none;
+    color: var(--text-cl);
+}
