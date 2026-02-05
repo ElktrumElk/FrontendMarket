@@ -1,14 +1,16 @@
 :root {
-    --bg-color: whitesmoke;
-    --forground-el-cl: white;
-    --nav-link-cl: rgb(211, 209, 209);
-    --text-cl: black;
-    --card-bg: rgba(241, 239, 239, 0.904);
+    --bg-color: rgb(252, 253, 255);
+    --forground-el-cl: rgba(238, 245, 249, 0.418);
+    --forground-el-cl-b: rgba(194, 192, 192, 0.418);
+    --nav-link-cl: transparent;
+    --text-cl: rgb(0, 0, 0);
+    --card-bg: rgba(247, 250, 251, 0.473);
 
 }
 
 
 body.dark {
+
     --bg-color: rgb(15, 15, 15);
     --forground-el-cl: rgb(35, 34, 34);
     --nav-link-cl: rgb(50, 49, 49);
@@ -17,35 +19,37 @@ body.dark {
 
 body {
 
-    background-color: var(--bg-color);
+    background: var(--bg-color);
     display: flex;
+    width: 99.5dvw;
     flex-direction: column;
     align-items: center;
     overflow-x: hidden;
+    margin: 0;
+
 
 }
 
 .app {
-    
-    width: 99dvw;
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    overflow-x: hidden;
+    width: 100%;
 
 }
 
 .head {
-    flex: 0 0 auto;
+
     width: 99%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: 3rem;
+    margin-block-start: 1rem;
     position: sticky;
-    top: 0;
-
+    z-index: 1;
+    top: 1px;
 
 }
 
@@ -56,6 +60,7 @@ body {
     font-size: 1.4rem;
     padding: 1rem 2rem;
     background-color: var(--forground-el-cl);
+    backdrop-filter: blur(5px);
     border: 1px solid rgb(99, 99, 99);
     display: flex;
     align-items: center;
@@ -82,11 +87,12 @@ body {
 }
 
 .section_links {
-    width: 100%;
+    width: 97%;
     padding: .3rem .3rem;
     display: flex;
     gap: .5rem;
     overflow-x: auto;
+
 }
 
 .links {
@@ -103,33 +109,161 @@ body {
 
 .main {
 
-    width: 100%;
+    width: 99%;
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
-
+    grid-template-columns: repeat(1, .95fr);
+    align-items: center;
+    justify-content: center;
     gap: 1rem;
     overflow: hidden;
 }
 
 .template_card {
 
-    width: 99%;
-    height: 20rem;
+    width: 100%;
+    height: 30rem;
     background-color: var(--card-bg);
-    border: 1px solid gray;
+    backdrop-filter: blur(5px);
+
+    border: 1px solid rgba(95, 94, 94, 0.379);
     border-radius: 2rem;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 1rem 0rem;
-    margin: 0;
+    gap: 1rem;
 
 }
 
 .prev {
     width: 90%;
-    height: 12rem;
-    background-color: black;
+    height: 15rem;
+    background-color: rgb(154, 154, 154);
     border-radius: 1.5rem;
 }
 
+.btns_cnt {
+
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-block-start: auto;
+
+}
+
+.btns {
+
+    width: 9rem;
+    height: 3rem;
+    background-color: rgb(213, 211, 211);
+    border-radius: 1rem;
+    color: var(--text-cl);
+    font-weight: bolder;
+    font-family: sans-serif;
+    font-size: 1rem;
+    border: none;
+}
+
+.profile {
+
+    width: 90%;
+    display: flex;
+    gap: .2rem;
+
+}
+
+.p_image {
+
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgb(34, 163, 255);
+    border-radius: 4rem;
+    background-color: rgb(29, 187, 255);
+}
+
+.name_cnt {
+    width: 10rem;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.name_cnt>h2 {
+    font-family: sans-serif;
+    font-size: 1.3rem;
+    margin: 0;
+
+}
+
+.quick_access_cnt {
+    padding: .2rem 1.5rem;
+    height: 3rem;
+    position: fixed;
+    bottom: 2rem;
+    background-color: var(--forground-el-cl-b);
+    border: 1px solid rgba(185, 182, 182, 0.847);
+    backdrop-filter: blur(10px);
+
+    align-self: center;
+    margin-inline-start: 1rem;
+    border-radius: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    overflow: hidden;
+    transform: scaleX(1) scaleY(1);
+    animation: bubble 1s 1;
+    animation-play-state: paused;
+}
+
+@keyframes bubble {
+  0%{
+    transform: scaleX(1) scaleY(1);
+  } 
+  30%{
+    transform: scaleX(0.8) scaleY(1.2);
+
+  } 
+  60%{
+    transform: scaleX(1.2) scaleY(0.8);
+  }
+  100% {
+    transform: scaleX(1) scaleY(1);
+  }
+  
+}
+
+
+
+.quick_access {
+
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 5rem;
+    user-select: none;
+
+}
+
+
+
+.is_selected {
+    background-color: rgba(63, 63, 63, 0.388);
+    border: 1px solid rgba(141, 140, 140, 0.422);
+    width: 2rem;
+    height: 2.5rem;
+    border-radius: 6rem;
+    padding: .2rem 1.2rem;
+    object-fit: contain;
+    object-position: center;
+    filter: drop-shadow(20px) brightness(10%);
+
+    display: flex;
+    position: absolute;
+    left: 10px;
+    transform: translateX(0) scaleX(1);
+
+    transition: transform .1s ease;
+
+}

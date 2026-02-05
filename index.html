@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,14 @@
 
     <link rel="stylesheet" href="./style/style.css">
 </head>
+
 <body>
     <div class="app">
         <header class="head">
             <h1 class="logoName">Frontend Market</h1>
 
             <div class="search_cnt">
-                <img class="searc_icon" src="./icons8-search-ios-17-filled/icons8-search-100-2.png"  alt="Searc icon" />
+                <img class="searc_icon" src="./icons8-search-ios-17-filled/" alt="Searc icon" />
             </div>
 
         </header>
@@ -33,15 +35,39 @@
 
         </nav>
 
-        <main class="main">
-            
-            <article class="template_card">
+        <main id="main" class="main">
+
+            <article id="card" class="template_card">
+
+                <div class="profile">
+                    <img class="p_image">
+
+                    <div class="name_cnt">
+                        <h2>Elkrum Elk</h2>
+                        <span class="tags">@LandingPage</span>
+                    </div>
+
+                </div>
                 <div class="prev"></div>
+
+                <div class="btns_cnt">
+                    <button class="btns">Preview</button>
+                    <button class="btns" style="background-color: rgb(67, 206, 245);">Download</button>
+                </div>
             </article>
-            
+
         </main>
 
+        <div id="q_a_c" class="quick_access_cnt">
+            <span id="nav_marker" class="is_selected"></span>
+            <img id="home" class="quick_access" src="./icons8-search-ios-17-filled/homeIc.png" alt="Home" draggable="false"/>
+            <img id="add" class="quick_access" src="./icons8-search-ios-17-filled/addIcon.png" alt="add" draggable="false"/>
+            <img id="search" class="quick_access" src="./icons8-search-ios-17-filled/icons8-search-150.png" alt="search" draggable="false" />
+        </div>
         <footer class="foot"></footer>
     </div>
+
+    <script src="./script.js"></script>
 </body>
+
 </html>
