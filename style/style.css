@@ -26,7 +26,7 @@ body {
     align-items: center;
     overflow-x: hidden;
     margin: 0;
-
+    height: fit-content;
 
 }
 
@@ -70,15 +70,15 @@ body {
 
 .search_cnt {
 
-    width: 2rem;
     height: 2rem;
+    padding: .5rem .5rem;
     background-color: var(--forground-el-cl);
     border-radius: 6rem;
     display: flex;
-    flex-direction: column;
     place-content: center;
     place-items: center;
     overflow: hidden;
+    gap: .5rem;
 }
 
 .searc_icon {
@@ -219,20 +219,23 @@ body {
 }
 
 @keyframes bubble {
-  0%{
-    transform: scaleX(1) scaleY(1);
-  } 
-  30%{
-    transform: scaleX(0.8) scaleY(1.2);
+    0% {
+        transform: scaleX(1) scaleY(1);
+    }
 
-  } 
-  60%{
-    transform: scaleX(1.2) scaleY(0.8);
-  }
-  100% {
-    transform: scaleX(1) scaleY(1);
-  }
-  
+    30% {
+        transform: scaleX(0.8) scaleY(1.2);
+
+    }
+
+    60% {
+        transform: scaleX(1.2) scaleY(0.8);
+    }
+
+    100% {
+        transform: scaleX(1) scaleY(1);
+    }
+
 }
 
 
@@ -266,4 +269,136 @@ body {
 
     transition: transform .1s ease;
 
+}
+
+/*The little profile image that is shown at the top*/
+.acc_setting {
+
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgb(67, 206, 245);
+    border-radius: 4rem;
+    object-fit: cover;
+}
+
+.dissabler {
+
+    width: 100%;
+
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 3;
+    background-color: rgba(15, 15, 15, 0.824);
+    display: none;
+    opacity: 0;
+    transition: opacity .4s ease;
+}
+
+.side_bar {
+
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--bg-color);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    transform: translateX(140%);
+    transition: transform .4s ease;
+    
+
+
+}
+
+.profile_cnt {
+
+    width: 90%;
+    height: 15rem;
+    margin-block-start: 1rem;
+    display: flex;
+    flex-direction: column;
+    padding: .1rem .5rem;
+    gap: .2rem;
+
+}
+
+.sidebar_close_btn {
+
+    align-self: flex-end;
+    width: 30px;
+    height: 30px;
+    margin-block-start: .5rem;
+    object-fit: cover;
+}
+
+.profile_cnt_row {
+
+    width: 100%;
+    display: flex;
+    gap: .5rem;
+
+
+
+}
+
+.profile_cnt_column {
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    overflow: hidden;
+
+    padding: .2rem .2rem;
+    box-shadow: 1px 1px 5px gray;
+    margin-block-start: 1rem;
+
+
+
+}
+
+.side_profile_img {
+
+    width: 80px;
+    height: 80px;
+    border: 2px solid rgb(67, 206, 245);
+    border-radius: 10rem;
+    object-fit: cover;
+
+}
+
+.username_bio_cnt {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    gap: .1rem;
+    max-height: 80px;
+    overflow: hidden;
+}
+
+.username_bio_cnt>h1 {
+    font-family: sans-serif;
+    margin: 0;
+    margin-block-start: .5rem;
+}
+
+.username_bio_cnt>span {
+    font-family: sans-serif;
+    margin: 0;
+    color: gray;
+}
+
+.profile_cnt_column>p {
+    margin: 0;
+    font-family: sans-serif;
+    font-size: .9rem;
+
+}
+
+.holo_dust {
+    width: 100%;
 }

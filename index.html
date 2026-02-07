@@ -3,19 +3,49 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
     <title>Frontend Market</title>
 
     <link rel="stylesheet" href="./style/style.css">
 </head>
 
 <body>
+    <div id="dis" class="dissabler">
+        <div id="side_bar" class="side_bar">
+
+            <!--------------PROFILE CARD START---------------------->
+            <div class="profile_cnt">
+                <img id="sidebar_close" class="sidebar_close_btn" src="./icons8-search-ios-17-filled/close_ic.png" />
+
+                <div class="profile_cnt_column">
+                    
+                    <div class="profile_cnt_row">
+                        <img class="side_profile_img" src="./images/IMG_2066.JPG" alt="profile" />
+
+                        <div class="username_bio_cnt">
+                            <h1>Elktrum Elk</h1>
+                            <span>@Vector Runner</span>
+                        </div>
+                    </div>
+
+                    <p>Hey my name is Elkanah Cole and i am a frontend developer, developing better UX and clean UI with better responsiveness.</p>
+
+                </div>
+
+            </div>
+            <!----------PROFILE CARD END-------------------------->
+
+        </div>
+    </div>
     <div class="app">
+
         <header class="head">
             <h1 class="logoName">Frontend Market</h1>
 
             <div class="search_cnt">
-                <img class="searc_icon" src="./icons8-search-ios-17-filled/" alt="Searc icon" />
+                <img class="searc_icon" src="./icons8-search-ios-17-filled/bell_ic_dark.png" alt="bell" />
+                <img id="acc_menu" class="acc_setting" src="./images/IMG_2066.JPG" alt="profile" draggable="false">
             </div>
 
         </header>
@@ -60,9 +90,12 @@
 
         <div id="q_a_c" class="quick_access_cnt">
             <span id="nav_marker" class="is_selected"></span>
-            <img id="home" class="quick_access" src="./icons8-search-ios-17-filled/homeIc.png" alt="Home" draggable="false"/>
-            <img id="add" class="quick_access" src="./icons8-search-ios-17-filled/addIcon.png" alt="add" draggable="false"/>
-            <img id="search" class="quick_access" src="./icons8-search-ios-17-filled/icons8-search-150.png" alt="search" draggable="false" />
+            <img id="home" class="quick_access" src="./icons8-search-ios-17-filled/homeIc.png" alt="Home"
+                draggable="false" />
+            <img id="add" class="quick_access" src="./icons8-search-ios-17-filled/addIcon.png" alt="add"
+                draggable="false" />
+            <img id="search" class="quick_access" src="./icons8-search-ios-17-filled/icons8-search-150.png" alt="search"
+                draggable="false" />
         </div>
         <footer class="foot"></footer>
     </div>
