@@ -150,11 +150,13 @@ toggleBtn.addEventListener("click", () => {
     if (isLight) {
         toggleBtn.style.backgroundColor = "rgba(60, 173, 248, 0.9)";
         document.body.classList.add("dark");
+        ctrBtn.style.alignSelf = "flex-end"
         isLight = false;
     }
     else {
         toggleBtn.style.backgroundColor = "";
         document.body.classList.remove("dark");
+        ctrBtn.style.alignSelf = "flex-start"
         isLight = true;
 
     }
