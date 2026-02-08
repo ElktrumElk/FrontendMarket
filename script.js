@@ -130,7 +130,9 @@ menuBtn.addEventListener("click", () => {
     }
 })
 
-sideBarDis.addEventListener("click", () => {
+sideBarDis.addEventListener("click", (e) => {
+
+    if (e.target.id !== sideBarDis.id) return;
     closeSideBar();
 });
 /**Close side bar */

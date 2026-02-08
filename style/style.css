@@ -5,6 +5,8 @@
     --nav-link-cl: transparent;
     --text-cl: rgb(0, 0, 0);
     --card-bg: rgba(247, 250, 251, 0.473);
+    --bell-bg: none;
+
 
 }
 
@@ -13,7 +15,11 @@ body.dark {
 
     --bg-color: rgb(15, 15, 15);
     --forground-el-cl: rgb(35, 34, 34);
-    --nav-link-cl: rgb(50, 49, 49);
+    --nav-link-cl: transparent;
+    --text-cl: rgb(232, 232, 232);
+    --card-bg: rgba(30, 30, 31, 0.473);
+    color: rgb(232, 232, 232);
+    --bell-bg: rgb(205, 204, 204);
 
 }
 
@@ -84,6 +90,9 @@ body {
 .searc_icon {
     width: 2rem;
     height: 2rem;
+    border-radius: 10rem;
+    padding: .2rem .2rem;
+    background-color: var(--bell-bg);
 }
 
 .section_links {
@@ -93,6 +102,9 @@ body {
     gap: .5rem;
     overflow-x: auto;
 
+}
+.section_links::-webkit-scrollbar {
+    display: none;
 }
 
 .links {
@@ -157,7 +169,7 @@ body {
 
     width: 9rem;
     height: 3rem;
-    background-color: rgb(213, 211, 211);
+    background-color: var(--forground-el-cl);
     border-radius: 1rem;
     color: var(--text-cl);
     font-weight: bolder;
@@ -315,7 +327,7 @@ body {
 }
 
 .profile_cnt {
-    
+
     flex: 0 0 auto;
     width: 90%;
     height: 15rem;
@@ -427,7 +439,7 @@ body {
     width: 95%;
     display: flex;
     flex-direction: column;
-    gap: .5rem;
+    gap: .1rem;
 
     font-family: sans-serif;
     color: var(--text-cl);
@@ -442,7 +454,7 @@ body {
 
 .settings_cnt>span {
     font-weight: bold;
-    padding: .5rem 0rem;
+    padding: .4rem 0rem;
     display: flex;
     justify-content: space-between;
 }
@@ -451,4 +463,21 @@ body {
     font-weight: bold;
     color: gray;
     margin-inline-end: .5rem;
+}
+
+.theme_toggle {
+    width: 4rem;
+    height: 2rem;
+    border: 1px solid gray;
+    border-radius: 3rem;
+    display: flex;
+    align-items: center;
+    padding: .0rem .2rem;
+}
+
+.toggle_ctrl {
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: gray;
+    border-radius: 5rem;
 }
