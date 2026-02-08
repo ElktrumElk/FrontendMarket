@@ -1,0 +1,82 @@
+:root {
+    --bg-color: rgb(252, 253, 255);
+    --forground-el-cl: rgba(238, 245, 249, 0.418);
+    --forground-el-cl-b: rgba(194, 192, 192, 0.418);
+    --nav-link-cl: transparent;
+    --text-cl: rgb(0, 0, 0);
+    --card-bg: rgba(247, 250, 251, 0.473);
+    --bell-bg: none;
+    --side-bar: rgb(255, 251, 251);
+    --dust-cl: rgba(244, 247, 250, 0.845);
+
+
+}
+
+* {
+    transition: background 1s ease;
+}
+
+body.dark {
+
+    --bg-color: rgb(15, 15, 15);
+    --forground-el-cl: rgba(35, 34, 34, 0.523);
+    --forground-el-cl-b: rgba(35, 34, 34, 0.418);
+
+    --nav-link-cl: transparent;
+    --text-cl: rgb(232, 232, 232);
+    --card-bg: rgba(30, 30, 31, 0.473);
+    --side-bar: rgba(30, 30, 31, 0.473);
+    color: rgb(232, 232, 232);
+    --bell-bg: rgb(205, 204, 204);
+    --new: rgb(14, 220, 14);
+    --dust-cl: rgba(0, 0, 0, 0.358);
+
+
+}
+
+.add_panel {
+
+    width: 95dvw;
+    height: 90dvh;
+    border: 1px solid gray;
+    border-top-left-radius: 3rem;
+    border-top-right-radius: 3rem;
+    background-color: var(--forground-el-cl);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    gap: 1rem;
+}
+
+.add_image {
+
+    width: 90%;
+    height: 15rem;
+    border: 1px solid gray;
+    border-radius: 2rem;
+    margin-block-start: 2rem;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    place-content: center;
+    font-weight: 500;
+    color: var(--text-cl);
+    font-family: sans-serif;
+
+}
+
+.files_cnt {
+
+    width: 90%;
+    border: 1px solid gray;
+    border-radius: .5rem;
+    padding: .5rem .1rem;
+}
+
+.label_inp

@@ -148,7 +148,8 @@ let isLight = true;
 
 toggleBtn.addEventListener("click", () => {
     if (isLight) {
-        toggleBtn.style.backgroundColor = "rgba(60, 173, 248, 0.9)";
+        toggleBtn.style.backgroundColor = "rgba(60, 173, 248, 0.4)";
+        toggleBtn.style.backdropFilter = "blur(5px)";
         document.body.classList.add("dark");
         ctrBtn.style.alignSelf = "flex-end"
         isLight = false;
