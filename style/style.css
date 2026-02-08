@@ -294,10 +294,10 @@ body {
     display: none;
     opacity: 0;
     transition: opacity .4s ease;
+
 }
 
 .side_bar {
-
     width: 80%;
     display: flex;
     flex-direction: column;
@@ -308,13 +308,15 @@ body {
     bottom: 0;
     transform: translateX(140%);
     transition: transform .4s ease;
-    
+    overflow-y: auto;
+
 
 
 }
 
 .profile_cnt {
-
+    
+    flex: 0 0 auto;
     width: 90%;
     height: 15rem;
     margin-block-start: 1rem;
@@ -322,7 +324,6 @@ body {
     flex-direction: column;
     padding: .1rem .5rem;
     gap: .2rem;
-
 }
 
 .sidebar_close_btn {
@@ -401,4 +402,53 @@ body {
 
 .holo_dust {
     width: 100%;
+    height: 1px;
+
+    box-shadow: 1px -9px 10px 7px rgb(216, 216, 216);
+    border-radius: 1rem;
+}
+
+.f {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.f>span {
+    width: 5rem;
+    font-family: sans-serif;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+.settings_cnt {
+    margin-block-start: 1rem;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+    font-family: sans-serif;
+    color: var(--text-cl);
+
+}
+
+.settings_cnt>h2 {
+    color: gray;
+    font-family: sans-serif;
+    margin-block-end: .5rem;
+}
+
+.settings_cnt>span {
+    font-weight: bold;
+    padding: .5rem 0rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.settings_cnt>span>span {
+    font-weight: bold;
+    color: gray;
+    margin-inline-end: .5rem;
 }
