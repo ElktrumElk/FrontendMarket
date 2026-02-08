@@ -140,3 +140,23 @@ menuClsBtn.addEventListener("click", () => {
     closeSideBar();
 });
 
+const toggleBtn = document.getElementById("toggle");
+const ctrBtn = document.getElementById("ctr");
+
+
+let isLight = true;
+
+toggleBtn.addEventListener("click", () => {
+    if (isLight) {
+        toggleBtn.style.backgroundColor = "rgba(60, 173, 248, 0.9)";
+        document.body.classList.add("dark");
+        isLight = false;
+    }
+    else {
+        toggleBtn.style.backgroundColor = "";
+        document.body.classList.remove("dark");
+        isLight = true;
+
+    }
+});
+
