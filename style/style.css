@@ -246,7 +246,7 @@ body {
     transform: scaleX(1) scaleY(1);
     animation: bubble 1s 1;
     animation-play-state: paused;
-    z-index: 20;
+    z-index: 1;
 }
 
 @keyframes bubble {

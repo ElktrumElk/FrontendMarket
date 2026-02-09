@@ -80,16 +80,53 @@
     <!----------------Add panel-------------->
     <div class="add_panel">
 
-        <div class="add_image">
+        <div id="img" class="add_image">
             <h1>Select Image</h1>
+            <input id="s" type="file" action="image/*" hidden/>
         </div>
 
         <div class="files_cnt">
             <span>Please select a file</span>
         </div>
 
-        
+        <div class="label_inp">
+            <label for="tem_name">Template Name</label>
+            <input id="tem_name" type="text" class="inputs" placeholder="Enter Template name" />
+        </div>
+
+        <div class="label_inp">
+            <label for="tem_name">Description</label>
+            <input id="tem_name" type="text" class="inputs" placeholder="Short Descriptition" />
+        </div>
+
+        <div class="label_inp">
+            <label for="tem_name">Price</label>
+            <input id="tem_name" type="number" class="inputs" placeholder="Price" />
+        </div>
+
+        <div class="label_inp">
+            <label class="tem_name">Categories</label>
+            <select class="inputs">
+                <option class="links">Landing Page</option>
+                <option class="links">Portfolio</option>
+                <option class="links">Ecommerce</option>
+                <option class="links">Admin Dashboard</option>
+                <option class="links">Blog / Magazine</option>
+                <option class="links">Documentation / knowledge Base</option>
+                <option class="links">Saas / Product</option>
+                <option class="links">Corporate / Business</option>
+                <option class="links">Email / Newsletter</option>
+                <option class="links">Event / Conference</option>
+            </select>
+
+        </div>
+        <div class="label_inp">
+            <button class="upload_btn">Cancel</button>
+            <button class="upload_btn" style="margin-inline-start: auto;">Upload</button>
+        </div>
     </div>
+
+
 
 
     <div class="app">
