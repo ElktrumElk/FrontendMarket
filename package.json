@@ -1,0 +1,8 @@
+{
+    "name": "f_market",
+    "type": "module",
+    "scripts": {
+        "db": "db.js"
+    },
+    "module": "./db.js"
+}

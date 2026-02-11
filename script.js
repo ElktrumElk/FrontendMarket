@@ -1,3 +1,5 @@
+import animatePanel from "./animate_panel.js";
+
 const card = document.getElementById("card");
 const main = document.getElementById("main");
 const quickAccessCnt = document.getElementById("q_a_c");
@@ -163,3 +165,87 @@ toggleBtn.addEventListener("click", () => {
     }
 });
 
+const addPanel = document.getElementById("addPanel");
+const addBtn = document.getElementById("add");
+const homeBtn = document.getElementById("home");
+const addCancel = document.getElementById("cancel_add");
+let isAddActive = false;
+
+addBtn.addEventListener("click", () => {
+
+    document.body.style.overflow = "hidden";
+    if (!isAddActive) {
+
+        animatePanel(addPanel, {
+            axis: "Y",
+            value: 0
+        });
+        isAddActive = true;
+    }
+});
+
+addCancel.addEventListener("click", () => {
+    if (isAddActive) {
+
+        animatePanel(addPanel, {
+            axis: "Y",
+            value: 100
+        })
+        isAddActive = false;
+        navMarker.style.transform = `translateX(0px) scaleX(1)`;
+        document.body.style.overflow = "";
+
+        setTimeout(() => {
+
+            addPanel.style.display = "none";
+
+        }, 300);
+    }
+})
+
+
+
+const imageHandler = document.getElementById("img");
+const imageSelector = document.getElementById("img_selector");
+
+imageHandler.addEventListener("click", () => {
+    imageSelector.click();
+})
+
+imageSelector.addEventListener("change", () => {
+    const blobImage = imageSelector.files[0];
+
+    const imgUrl = URL.createObjectURL(blobImage);
+
+    const imageElement = document.createElement("img");
+    imageElement.setAttribute('class', 'image');
+    imageElement.src = imgUrl;
+    imageHandler.innerHTML = "";
+    imageElement.alt = "Select Image";
+    imageHandler.appendChild(imageElement);
+});
+
+const fileHandler = document.getElementById("file_handler");
+const fileSelector = document.getElementById("file_selector");
+
+fileHandler.addEventListener("click", () => {
+    fileSelector.click();
+})
+
+fileSelector.addEventListener("change", () => {
+    try {
+        fileHandler.innerHTML = "";
+        [...fileSelector.files].forEach(file => {
+            const fileUrl = URL.createObjectURL(file);
+
+            const anchor = document.createElement("span");
+            anchor.setAttribute("class", "files_block");
+            anchor.innerText = file.name;
+
+            fileHandler.appendChild(anchor);
+        });
+    }
+    catch (e) {
+        alert("Sorry you can't view thsi file: ", e);
+    }
+});

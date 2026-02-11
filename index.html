@@ -78,15 +78,16 @@
     </div>
 
     <!----------------Add panel-------------->
-    <div class="add_panel">
+    <div id="addPanel" class="add_panel">
 
         <div id="img" class="add_image">
             <h1>Select Image</h1>
-            <input id="s" type="file" action="image/*" hidden/>
+            <input id="img_selector" type="file" action="image/*" hidden/>
         </div>
 
-        <div class="files_cnt">
-            <span>Please select a file</span>
+        <div id="file_handler" class="files_cnt">
+            <span>Please Select file</span>
+            <input id="file_selector" type="file" accept="*" multiple hidden> 
         </div>
 
         <div class="label_inp">
@@ -95,18 +96,18 @@
         </div>
 
         <div class="label_inp">
-            <label for="tem_name">Description</label>
-            <input id="tem_name" type="text" class="inputs" placeholder="Short Descriptition" />
+            <label for="tem_des">Description</label>
+            <input id="tem_des" type="text" class="inputs" placeholder="Short Descriptition" />
         </div>
 
         <div class="label_inp">
-            <label for="tem_name">Price</label>
-            <input id="tem_name" type="number" class="inputs" placeholder="Price" />
+            <label for="tem_price">Price</label>
+            <input id="tem_price" type="number" class="inputs" placeholder="Price" />
         </div>
 
         <div class="label_inp">
-            <label class="tem_name">Categories</label>
-            <select class="inputs">
+            <label for="tem_cat">Categories</label>
+            <select id="tem_cat" class="inputs">
                 <option class="links">Landing Page</option>
                 <option class="links">Portfolio</option>
                 <option class="links">Ecommerce</option>
@@ -121,7 +122,7 @@
 
         </div>
         <div class="label_inp">
-            <button class="upload_btn">Cancel</button>
+            <button id="cancel_add" class="upload_btn">Cancel</button>
             <button class="upload_btn" style="margin-inline-start: auto;">Upload</button>
         </div>
     </div>
@@ -191,7 +192,7 @@
         <footer class="foot"></footer>
     </div>
 
-    <script src="./script.js"></script>
+    <script src="./script.js" type="module"></script>
 </body>
 
 </html>
