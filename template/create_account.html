@@ -6,13 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frontend Market | Login</title>
 
-    <link rel="stylesheet" href="./style/login.css">
+    <link rel="stylesheet" href="/style/login.css">
 </head>
 
 <body>
     <div class="login_cnt">
-        <h1>Login</h1>
+        <h1>Create Account</h1>
         <form action="www.google.com" method="post">
+
+            <div class="row_cnt">
+                <label for="name">Fullname</label>
+                <input class="inp" id="name" type="text" required>
+            </div>
 
             <div class="row_cnt">
                 <label for="usrname">Username</label>
@@ -24,11 +29,15 @@
                 <input class="inp" id="passwd" type="password" required>
             </div>
 
-            <button class="submit_button" type="submit">Login</button>
-            <a href="#">Forgot password</a>
+            <div class="row_cnt">
+                <label for="dob">Date of Birth</label>
+                <input class="inp" id="dob" type="date" required>
+            </div>
+
+            <button class="submit_button" type="submit">Create Account</button>
         </form>
 
-        <p class="span">If you dont yet have an account<a href="./create_account.html"> Create an Account</a></p>
+        <p class="span">Already have an account? <a href="./login.html"> Login </a></p>
     </div>
 </body>
 
