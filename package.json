@@ -4,5 +4,11 @@
     "scripts": {
         "db": "db.js"
     },
-    "module": "./db.js"
+    "module": "./db.js",
+    "devDependencies": {
+        "interacter": "^1.0.4"
+    },
+    "dependencies": {
+        "express": "^5.2.1"
+    }
 }

@@ -1,7 +1,12 @@
-import db from "./db.js"
-import Input, { int, keyPress, main, writeLine } from "./IOS/ios.js";
+import db from "../db.js"
+import Input, { main, writeLine, int, keyPress } from "interacter";
 
-async function addUser(info) {
+/**
+ * # Account creation
+ * add user to the database
+ * @param {Array} info 
+ */
+export async function addUser(info) {
 
   const sql = `INSERT INTO users 
   (name, username, password, dob, userId, balance) 
@@ -12,7 +17,13 @@ async function addUser(info) {
   console.log("Succes", result.insertId);
 }
 
-async function login(username, password) {
+/**
+ * Login validation
+ * @param {string} username
+ * @param {string} password 
+ * @returns 
+ */
+export async function login(username, password) {
 
   try {
     const [row] = await db.query("SELECT password FROM users WHERE username = ?", [username])
@@ -31,8 +42,13 @@ async function login(username, password) {
   }
 }
 
-async function getUser(userId) {
-  
+/**
+ * Get the information of the user
+ * @param {string} userId 
+ * @returns 
+ */
+export async function getUser(userId) {
+
   const [row] = await db.query("SELECT * FROM users WHERE userId = ?", [userId]);
 
   if (!row) return false;
@@ -44,7 +60,7 @@ async function getUser(userId) {
 
 
 //let info = ["Elkanah Cole", "Developer", "123456", "2000-05-10", "USR001", 500.00]
-
+/*
 main(async () => {
 
   writeLine("===============Welcome to frontend Market============");
@@ -104,4 +120,4 @@ main(async () => {
 
   }
 });
-
+*/
