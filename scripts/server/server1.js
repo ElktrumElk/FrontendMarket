@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import { login } from "../index.js";
+import { addUser, getUser, login } from "../index.js";
 import session from "express-session";
 import dotenv from "dotenv";
 
@@ -45,18 +45,28 @@ app.get("/home", (req, res) => {
     }
 });
 
+app.get("/creatAccount", (req, res) => {
+    res.sendFile(path.join(__dirname, "../../public", "create_account.html"));
+});
+
+
+app.get("/setup/profile", (req, res) => {
+    res.sendFile(path.join(__dirname, "../../public", "profileSetUp.html"));
+});
+
+
 app.post("/login", async (req, res) => {
 
     const username = req.body.username;
     const pwd = req.body.password;
 
     const validator = await login(username, pwd);
-    
+
     if (validator[0] === true) {
-        console.log(validator)
 
         req.session.isLogin = true;
         req.session.user = username;
+        req.session.userId = validator[1];
 
         res.redirect("/home");
     }
@@ -67,7 +77,63 @@ app.post("/login", async (req, res) => {
     }
 });
 
-//app.post("/api/home/user", )
+app.post("/api/user", async (req, res) => {
+
+    try {
+
+        if (req.session.userId) {
+
+            const userValid = await getUser(req.session.userId);
+
+            console.log(userValid[1][0])
+
+            if (userValid[0] == true) {
+                console.log("y")
+                res.json(JSON.stringify({ info: userValid[1][0] }));
+            }
+            else {
+                req.session.isLogin = false;
+                res.redirect("/log");
+            }
+        }
+    }
+    catch (e) {
+
+        res.redirect("/log");
+
+    }
+
+})
+
+app.post("/api/user/createAccount", async (req, res) => {
+    const name = req.body.fname;
+    const username = req.body.username;
+    const pwd = req.body.password;
+    const email = req.body.email;
+
+    const randId = Math.floor(Math.random() * 999999);
+    const userId = `${username}_${randId}`;
+    const usertag = `@${username.toLowerCase()}`;
+
+    const acc = await addUser([name, username, pwd, usertag, " ", email, userId, 1.00]);
+
+    if (acc[0] == true) {
+        req.session.isLogin = true;
+        req.session.user = username;
+        req.session.userId = userId;
+        res.redirect('/setup/profile');
+
+    } else {
+        res.redirect('/creatAccount');
+
+    }
+
+});
+
+app.post("/api/user/profile", (req, res) => {
+    const img = "yo"
+});
+
 
 app.listen(3000, "0.0.0.0", () => {
     console.log("Server running on port 3000");
