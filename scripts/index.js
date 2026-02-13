@@ -8,13 +8,20 @@ import Input, { main, writeLine, int, keyPress } from "interacter";
  */
 export async function addUser(info) {
 
-  const sql = `INSERT INTO users 
-  (name, username, password, dob, userId, balance) 
-  VALUES (?, ?, ?, ?, ?, ?)
+  try {
+    const sql = `INSERT INTO users 
+  (name, username, password, user_tag, userbio, email, userId, balance) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
   `;
 
-  const [result] = await db.execute(sql, info);
-  console.log("Succes", result.insertId);
+    const [result] = await db.execute(sql, info);
+    console.log("Succes", result.insertId);
+
+    return [true, result.insertId];
+    
+  }
+  catch (e) {
+    return [false, `An error occur: ${e}`]
+  }
 }
 
 /**
@@ -26,9 +33,9 @@ export async function addUser(info) {
 export async function login(username, password) {
 
   try {
-    const [row] = await db.query("SELECT password FROM users WHERE username = ?", [username])
-    
-    if (row.length === 0) { return [false, "Invalid username or password"]};
+    const [row] = await db.query("SELECT password FROM users WHERE username = ?", [username]);
+
+    if (row.length === 0) { return [false, "Invalid username or password"] };
 
     if (password === row[0].password) {
 
@@ -36,8 +43,10 @@ export async function login(username, password) {
       return [true, userId[0].userId];
     }
     else {
+
       console.log("Invalig credintial");
       return [false, "No user found"];
+
     }
   }
   catch (e) {
@@ -52,11 +61,17 @@ export async function login(username, password) {
  */
 export async function getUser(userId) {
 
-  const [row] = await db.query("SELECT * FROM users WHERE userId = ?", [userId]);
+  try {
 
-  if (!row) return false;
+    const [row] = await db.query("SELECT name, username, user_tag, userbio, email, userId, balance FROM users WHERE userId = ?", [userId]);
 
-  return row;
+    if (!row && row.length == 0) return [false, "Invalid user"];
+
+    return [true, row];
+  }
+  catch (e) {
+    return [false, `An error occur in the db ${e}`]
+  }
 }
 
 
@@ -76,6 +91,7 @@ main(async () => {
     try {
 
       int(choice);
+
     }
     catch (e) {
 
@@ -91,10 +107,11 @@ main(async () => {
   const password = new Input();
   const fname = new Input();
   const dob = new Input();
+  const userBio = new Input();
+  const email = new Input();
 
 
   if (choice.value == "1") {
-
 
     await username.readl("Enter Username: ");
     await password.readl("Enter password: ");
@@ -106,11 +123,21 @@ main(async () => {
   else if (choice.value === "2") {
 
     await fname.readl("Enter fullname: ");
-    await username.readl("Enter username: ");
-    await password.readl("Enter password: ");
-    await dob.readl("Enter Date of birth: ");
 
-    await addUser([fname.value, username.value, password.value, dob.value, "USER2", "0.00"]);
+    await username.readl("Enter username: ", keyPress((k) => {
+      if (k == " ") {
+        username.alt(" ");
+      }
+    }));
+
+    await password.readl("Enter password: ");
+    await userBio.readl("Write short thing about your self: ");
+    await email.readl("Enter email address for validation: ");
+
+    const userTag = `@${username.value.toLowerCase()}`;
+    const _user_id = `${username.value.toLowerCase()}_${Math.floor(Math.random() * 99999)}`;
+
+    await addUser([fname.value, username.value, password.value, userTag, userBio.value, email.value, _user_id, "0.00"]);
 
     console.log("success");
   }
@@ -119,8 +146,10 @@ main(async () => {
 
     await USERID.readl("Enter user id: ");
 
-    console.log(await getUser(USERID.value))
+    const v = await getUser(USERID.value);
+    console.log(v[1][0]);
 
   }
 });
+
 */

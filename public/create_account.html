@@ -12,26 +12,26 @@
 <body>
     <div class="login_cnt">
         <h1>Create Account</h1>
-        <form action="www.google.com" method="post">
+        <form action="/api/user/createAccount" method="post">
 
             <div class="row_cnt">
-                <label for="name">Fullname</label>
-                <input class="inp" id="name" type="text" required>
+                <label for="name" >Fullname</label>
+                <input class="inp" id="name" name="fname" type="text" required>
             </div>
 
             <div class="row_cnt">
                 <label for="usrname">Username</label>
-                <input class="inp" id="usrname" type="text" required>
+                <input class="inp" name="username" id="usrname" type="text" required>
             </div>
 
             <div class="row_cnt">
                 <label for="passwd">Password</label>
-                <input class="inp" id="passwd" type="password" required>
+                <input class="inp" name="password" id="passwd" type="password" required>
             </div>
 
             <div class="row_cnt">
-                <label for="dob">Date of Birth</label>
-                <input class="inp" id="dob" type="date" required>
+                <label for="email">Email</label>
+                <input class="inp" name="email" id="email" type="email" required>
             </div>
 
             <button class="submit_button" type="submit">Create Account</button>
