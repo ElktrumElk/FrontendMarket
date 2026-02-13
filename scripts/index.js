@@ -1,4 +1,4 @@
-import db from "../db.js"
+import db from "./db.js"
 import Input, { main, writeLine, int, keyPress } from "interacter";
 
 /**
@@ -27,14 +27,17 @@ export async function login(username, password) {
 
   try {
     const [row] = await db.query("SELECT password FROM users WHERE username = ?", [username])
+    
+    if (row.length === 0) { return [false, "Invalid username or password"]};
 
     if (password === row[0].password) {
-      console.log("Success");
-      return;
+
+      const [userId] = await db.query("SELECT userId FROM users WHERE password = ?", [password])
+      return [true, userId[0].userId];
     }
     else {
       console.log("Invalig credintial");
-      return;
+      return [false, "No user found"];
     }
   }
   catch (e) {
