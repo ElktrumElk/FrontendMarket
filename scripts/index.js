@@ -1,6 +1,7 @@
 import db from "./db.js"
 import Input, { main, writeLine, int, keyPress } from "interacter";
 
+
 /**
  * # Account creation
  * add user to the database
@@ -75,6 +76,20 @@ export async function getUser(userId) {
 }
 
 
+export async function modifyDataValue(dataname, value, USERID) {
+  
+  try{
+  const sql = `UPDATE users SET ${dataname} = ? WHERE userId = ?`;
+
+  const [res] = db.execute(sql, [value, USERID]);
+
+  return [true, res]
+  }
+  catch (e) {
+    return [false, `A error occur: ${e}`]
+  }
+
+}
 
 
 //let info = ["Elkanah Cole", "Developer", "123456", "2000-05-10", "USR001", 500.00]
@@ -147,9 +162,8 @@ main(async () => {
     await USERID.readl("Enter user id: ");
 
     const v = await getUser(USERID.value);
-    console.log(v[1][0]);
+    console.log(v);
 
   }
 });
-
 */

@@ -10,31 +10,46 @@ fileHandler.addEventListener("click", () => {
     file_Selector.click();
 });
 
+
+const formData = new FormData();
+
+/**LISTEN TO input changes */
 file_Selector.addEventListener("change", () => {
     const imageFile = file_Selector.files[0];
-    
+
     if (imageFile.type == "video") return;
 
     const imgUrl = URL.createObjectURL(imageFile);
     image.src = imgUrl;
+
+    formData.append("image", imageFile);
 });
 
+/*
 fileHandler.addEventListener("scroll", () => {
-    console.log(fileHandler.style.objectPosition);
+    console.log(image.scrollHeight);
 });
+*/
 
-uploadBtn.addEventListener("click", async() => {
+uploadBtn.addEventListener("click", async () => {
 
-    const inf = {
-        p_image: image,
-        p_bio: bio.value
-    }
 
-    await fetch("/api/user/profile", {
+
+    await fetch("/profileImage/upload", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(inf)
-    });
+        body: formData
+    })
+        .then(res => res.json)
+        .then(async data => {
+            console.log(data);
+            const inf = {
+                p_bio: bio.value
+            }
+            await fetch("/api/user/profile", {
+                method: "POST",
+                body: JSON.stringify(inf)
+            })
+        })
+        .catch(err => console.error("Error:", err))
+
 });

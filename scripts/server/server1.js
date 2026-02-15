@@ -1,11 +1,21 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import { addUser, getUser, login } from "../index.js";
+import { addUser, getUser, login, modifyDataValue } from "../index.js";
 import session from "express-session";
-import dotenv from "dotenv";
+import multer from "multer";
 
-dotenv.config();
+
+//configure
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "uploads/");
+    },
+
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+});
 
 const app = express();
 
@@ -53,6 +63,10 @@ app.get("/creatAccount", (req, res) => {
 app.get("/setup/profile", (req, res) => {
     res.sendFile(path.join(__dirname, "../../public", "profileSetUp.html"));
 });
+
+
+const upload = multer({ storage: storage });
+
 
 
 app.post("/login", async (req, res) => {
@@ -106,6 +120,9 @@ app.post("/api/user", async (req, res) => {
 })
 
 app.post("/api/user/createAccount", async (req, res) => {
+
+    console.log(process.env.DB_KEY);
+
     const name = req.body.fname;
     const username = req.body.username;
     const pwd = req.body.password;
@@ -116,6 +133,7 @@ app.post("/api/user/createAccount", async (req, res) => {
     const usertag = `@${username.toLowerCase()}`;
 
     const acc = await addUser([name, username, pwd, usertag, " ", email, userId, 1.00]);
+    console.log(acc);
 
     if (acc[0] == true) {
         req.session.isLogin = true;
@@ -125,13 +143,23 @@ app.post("/api/user/createAccount", async (req, res) => {
 
     } else {
         res.redirect('/creatAccount');
-
     }
-
 });
 
-app.post("/api/user/profile", (req, res) => {
-    const img = "yo"
+app.post("/profileImage/upload", upload.single("image"), (req, res) => {
+    res.json({ message: "Image uploaded successfuly " })
+});
+
+app.post("/api/user/profile", async (req, res) => {
+    const usrBio = res.body.p_bio;
+    const up = await modifyDataValue("userBio", usrBio, req.session.userId);
+    if (up[0] === true) {
+        res.redirect('/home');
+    }
+    else {
+        console.log(up);
+        res.json({"message": "Cannot add info try again"});
+    }
 });
 
 
