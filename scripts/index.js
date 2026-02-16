@@ -90,6 +90,11 @@ export async function modifyDataValue(dataname, value, USERID) {
   }
 
 }
+//time to xlp: 16 feb 12:57
+//next update comming up
+export async function addpost(user_id, post_id, post_img, post_dir, post_name, post_price, post_des, post_cat){
+
+}
 
 
 //let info = ["Elkanah Cole", "Developer", "123456", "2000-05-10", "USR001", 500.00]

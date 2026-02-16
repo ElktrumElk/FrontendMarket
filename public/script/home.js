@@ -7,7 +7,10 @@ const following = document.getElementById("following");
 const follower = document.getElementById("follower");
 const product = document.getElementById("product");
 
-/**Comment: Initial fetch */
+
+/**Comment: Initial fetch
+ * Fetch the user info
+*/
 async function fetchInfo() {
 
     const res = await fetch("/api/user", {
@@ -28,7 +31,6 @@ async function fetchInfo() {
     follower.innerText = info.info.followers;
     following.innerText = info.info.following;
     product.innerText = info.info.products;
-
 }
 
 fetchInfo();
