@@ -42,14 +42,24 @@ uploadBtn.addEventListener("click", async () => {
         .then(res => res.json)
         .then(async data => {
             console.log(data);
-            const inf = {
-                p_bio: bio.value
-            }
-            await fetch("/api/user/profile", {
-                method: "POST",
-                body: JSON.stringify(inf)
-            })
         })
-        .catch(err => console.error("Error:", err))
+        .catch(err => console.error("Error:", err));
+
+
+    const res = await fetch("/api/user/profile", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ info: bio.value })
+    });
+
+    const data = await res.json();
+    if (data.stats === true) {
+        window.location.href = '/home';
+    }
+    else {
+        alert(data.message);
+    }
 
 });

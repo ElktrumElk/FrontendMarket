@@ -398,6 +398,7 @@ body {
     border: 2px solid rgb(67, 206, 245);
     border-radius: 10rem;
     object-fit: cover;
+    background-color: gray;
 
 }
 

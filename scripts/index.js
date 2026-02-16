@@ -64,7 +64,7 @@ export async function getUser(userId) {
 
   try {
 
-    const [row] = await db.query("SELECT name, username, user_tag, userbio, email, userId, balance FROM users WHERE userId = ?", [userId]);
+    const [row] = await db.query("SELECT name, username, user_tag, userbio, email, userId, balance, p_img_link, following, followers, products FROM users WHERE userId = ?", [userId]);
 
     if (!row && row.length == 0) return [false, "Invalid user"];
 
@@ -81,7 +81,7 @@ export async function modifyDataValue(dataname, value, USERID) {
   try{
   const sql = `UPDATE users SET ${dataname} = ? WHERE userId = ?`;
 
-  const [res] = db.execute(sql, [value, USERID]);
+  const [res] = await db.execute(sql, [value, USERID]);
 
   return [true, res]
   }

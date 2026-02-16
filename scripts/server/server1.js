@@ -9,7 +9,7 @@ import multer from "multer";
 //configure
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "uploads/");
+        cb(null, "../../uploads/");
     },
 
     filename: (req, file, cb) => {
@@ -24,7 +24,8 @@ const __dirname = path.dirname(__filename);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../../public")));
-
+app.use(express.json());
+app.use(express.static(path.join(__dirname, "../../uploads")));
 
 app.use(session({
     secret: "123456789",
@@ -146,19 +147,39 @@ app.post("/api/user/createAccount", async (req, res) => {
     }
 });
 
-app.post("/profileImage/upload", upload.single("image"), (req, res) => {
-    res.json({ message: "Image uploaded successfuly " })
+app.post("/profileImage/upload", upload.single("image"), async (req, res) => {
+    try {
+        
+        console.log(req.file.filename);
+
+        const up = await modifyDataValue("p_img_link", req.file.filename, req.session.userId);
+
+        if (up[0] === true) {
+            res.json({ message: "Image uploaded successfuly " });
+        }
+
+        else {
+            console.log("Error saving image path in the db", up[1]);
+            res.json({ message: "Problem uploading image to the server" });
+        };
+    }
+    catch (e) {
+        console.error("An error occur:", e);
+    };
+
 });
 
 app.post("/api/user/profile", async (req, res) => {
-    const usrBio = res.body.p_bio;
+    const usrBio = req.body.info;
     const up = await modifyDataValue("userBio", usrBio, req.session.userId);
+
     if (up[0] === true) {
-        res.redirect('/home');
+        res.json({ stats: true, message: "success", src: "/home" });
     }
+
     else {
         console.log(up);
-        res.json({"message": "Cannot add info try again"});
+        res.json({ stats: false, message: "Cannot add info try again" });
     }
 });
 
