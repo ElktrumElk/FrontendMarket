@@ -7,7 +7,7 @@ dotenv.config({
 });
 
 
-console.log("yo", process.env.DB_KEY);
+console.log("o", process.env.DB_KEY);
 export const db = mysql.createPool({
     host: 'localhost',
     user: 'root',

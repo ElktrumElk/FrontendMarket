@@ -1,10 +1,10 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import { addUser, getUser, login, modifyDataValue } from "../index.js";
+import { addpost, addUser, getUser, login, modifyDataValue, modifyPostValue } from "../index.js";
 import session from "express-session";
 import multer from "multer";
-
+import fs from "fs";
 
 //configure
 const storage = multer.diskStorage({
@@ -17,6 +17,26 @@ const storage = multer.diskStorage({
     }
 });
 
+const postStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        const userId = req.session.userId;
+        const postId = req.session.postId;
+        const uploadPath = path.join(__dirname, "../../posts", "users", userId, `post_${postId}${userId}`);
+
+        fs.mkdir(uploadPath, { recursive: true }, (err) => {
+
+            if (err) return cb(err, uploadPath);
+            cb(null, uploadPath);
+
+        });
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + "-" + file.originalname);
+    }
+})
+
+const postUplaod = multer({ storage: postStorage });
+
 const app = express();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -26,7 +46,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../../public")));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../../uploads")));
-
+app.use(express.static(path.join(__dirname, "../../posts")))
 app.use(session({
     secret: "123456789",
     resave: false,
@@ -149,7 +169,7 @@ app.post("/api/user/createAccount", async (req, res) => {
 
 app.post("/profileImage/upload", upload.single("image"), async (req, res) => {
     try {
-        
+
         console.log(req.file.filename);
 
         const up = await modifyDataValue("p_img_link", req.file.filename, req.session.userId);
@@ -169,6 +189,7 @@ app.post("/profileImage/upload", upload.single("image"), async (req, res) => {
 
 });
 
+//==================================Update user profile=============================
 app.post("/api/user/profile", async (req, res) => {
     const usrBio = req.body.info;
     const up = await modifyDataValue("userBio", usrBio, req.session.userId);
@@ -183,6 +204,72 @@ app.post("/api/user/profile", async (req, res) => {
     }
 });
 
+
+//=================================To add post to the data base===================================
+app.post("/api/user/add/post", async (req, res) => {
+
+    const data = req.body;
+    const postId = `${data.tName.slice(4)}_${req.session.userId.slice(4)}${Date.now()}`
+    const __addPost = addpost(req.session.userId, postId, "", "", data.tName, data.tPrice, data.tDes, data.tCat);
+
+    if (__addPost[0] === true) {
+        console.log("New post");
+        req.session.post_id = postId;
+        res.json({ state: true, message: "Successfully added" });
+    }
+    else {
+        console.log("ERROR:", __addPost[1]);
+        res.json({ state: false, message: "There was a problem uploading your product" });
+    };
+});
+
+
+//======================a post endpoint to store template images===============================
+app.post("/postImage/upload", upload.single("image"), async (req, res) => {
+    try {
+
+        console.log(req.file.filename);
+
+        const up = await modifyPostValue("post_img", req.file.filename, req.session.userId, req.session.postId);
+
+        if (up[0] === true) {
+            res.json({ message: "Image uploaded successfuly " });
+        }
+
+        else {
+            console.log("Error saving image path in the db", up[1]);
+            res.json({ message: "Problem uploading image to the server" });
+        };
+    }
+    catch (e) {
+        console.error("An error occur:", e);
+    };
+
+});
+
+
+//======================a post endpoint to store template images===============================
+app.post("/post/file/upload", postUplaod.single("files"), async (req, res) => {
+    try {
+
+        console.log(req.file.filename);
+
+        const up = await modifyPostValue("post_dir", req.file.path, req.session.userId, req.session.post_id);
+
+        if (up[0] === true) {
+            res.json({ message: "Image uploaded successfuly " });
+        }
+
+        else {
+            console.log("Error saving image path in the db", up[1]);
+            res.json({ message: "Problem uploading image to the server" });
+        };
+    }
+    catch (e) {
+        console.error("An error occur:", e);
+    };
+
+});
 
 app.listen(3000, "0.0.0.0", () => {
     console.log("Server running on port 3000");

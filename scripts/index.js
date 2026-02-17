@@ -1,7 +1,6 @@
 import db from "./db.js"
 import Input, { main, writeLine, int, keyPress } from "interacter";
 
-
 /**
  * # Account creation
  * add user to the database
@@ -18,7 +17,7 @@ export async function addUser(info) {
     console.log("Succes", result.insertId);
 
     return [true, result.insertId];
-    
+
   }
   catch (e) {
     return [false, `An error occur: ${e}`]
@@ -77,22 +76,56 @@ export async function getUser(userId) {
 
 
 export async function modifyDataValue(dataname, value, USERID) {
-  
-  try{
-  const sql = `UPDATE users SET ${dataname} = ? WHERE userId = ?`;
 
-  const [res] = await db.execute(sql, [value, USERID]);
+  try {
+    const sql = `UPDATE users SET ${dataname} = ? WHERE userId = ?`;
 
-  return [true, res]
+    const [res] = await db.execute(sql, [value, USERID]);
+
+    return [true, res];
   }
   catch (e) {
-    return [false, `A error occur: ${e}`]
+    return [false, `A error occur: ${e}`];
   }
 
 }
 //time to xlp: 16 feb 12:57
 //next update comming up
-export async function addpost(user_id, post_id, post_img, post_dir, post_name, post_price, post_des, post_cat){
+export async function addpost(user_id, post_id, post_img, post_dir, post_name, post_price, post_des, post_cat) {
+  try {
+
+    const sql = `INSERT INTO posts (user_id, postid, post_img, postdir, post_name, post_des, post_price, post_cat) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+    const [res] = await db.execute(sql, [user_id, post_id, post_img, post_dir, post_name, post_des, post_price, post_cat]);
+    return [true, res];
+
+  }
+  catch (e) {
+    return [false, `An error occur: ${e}`];
+  }
+};
+
+export async function getPost(user_id, post_id) {
+  try {
+    const [result] = await db.query('SELECT * FROM posts WHERE user_id = ? AND postid = ?', [user_id, post_id]);
+    return [true, result]
+  }
+  catch (e) {
+    return [false, `An error occur: ${e}`];
+  };
+};
+
+export async function modifyPostValue(dataname, value, USERID, postid) {
+
+  try {
+    const sql = `UPDATE posts SET ${dataname} = ? WHERE user_id = ? AND postid = ?`;
+
+    const [res] = await db.execute(sql, [value, USERID, postid]);
+
+    return [true, res];
+  }
+  catch (e) {
+    return [false, `A error occur: ${e}`];
+  }
 
 }
 
@@ -136,8 +169,32 @@ main(async () => {
     await username.readl("Enter Username: ");
     await password.readl("Enter password: ");
 
-    await login(username.value, password.value);
-    writeLine(username.value)
+    const valid = await login(username.value, password.value);
+    if (valid[0] === true) {
+      writeLine("1. Get post \t 2. Add post");
+
+      const choice = new Input();
+
+      await choice.readl(">> ", keyPress((k) => {
+        try {
+          int(choice);
+        } catch (e) {
+          for (let i = 1; i <= 2; i += 1) {
+            choice.write(i.toString());
+          }
+        }
+      }));
+
+      if (choice.value == "1") {
+        const post = await getPost(valid[1], "post1");
+        console.log(post);
+      }
+      else if (choice.value == "2") {
+        const newPost = await addpost(valid[1], "post1", "images/1234567.jpeg", "posts/", "Simple Portfolio", 200, "Just a simple template", "landing page");
+        console.log(newPost);
+      }
+
+    }
 
   }
   else if (choice.value === "2") {
