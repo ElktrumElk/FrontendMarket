@@ -149,8 +149,6 @@ app.get("/api/usr", async (req, res) => {
 
             const userValid = await getUser(req.query.userId);
 
-        
-
             if (userValid[0] == true) {
                 res.json(JSON.stringify({ info: userValid[1][0] }));
             }
@@ -161,11 +159,8 @@ app.get("/api/usr", async (req, res) => {
         }
     }
     catch (e) {
-
         res.redirect("/log");
-
     }
-
 })
 
 app.post("/api/user/createAccount", async (req, res) => {
@@ -201,7 +196,7 @@ app.post("/profileImage/upload", upload.single("image"), async (req, res) => {
         }
 
         else {
-            console.log("Error saving image path in the db", up[1]);
+            console.error("Error saving image path in the db", up[1]);
             res.json({ message: "Problem uploading image to the server" });
         };
     }
@@ -240,7 +235,7 @@ app.post("/api/user/add/post", async (req, res) => {
         res.json({ state: true, message: "Successfully added" });
     }
     else {
-        console.log("ERROR:", __addPost[1]);
+        console.error("ERROR:", __addPost[1]);
         res.json({ state: false, message: "There was a problem uploading your product" });
     };
 });

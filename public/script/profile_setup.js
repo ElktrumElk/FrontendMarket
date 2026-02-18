@@ -1,3 +1,5 @@
+import notificationPanel from "./notification/notification_panel.js";
+
 const image = document.getElementById("pp");
 const bio = document.getElementById("userBio");
 const username = document.getElementById("usr");
@@ -20,10 +22,15 @@ file_Selector.addEventListener("change", () => {
 
     if (imageFile.type == "video") return;
 
-    const imgUrl = URL.createObjectURL(imageFile);
-    image.src = imgUrl;
+    if (imageFile.type == "image") {
 
-    formData.append("image", imageFile);
+        const imgUrl = URL.createObjectURL(imageFile);
+        image.src = imgUrl;
+
+        formData.append("image", imageFile);
+    }else {
+        notificationPanel("Sorry Only Image is allowed", "error");
+    }
 });
 
 /*

@@ -1,0 +1,28 @@
+
+.panel {
+    width: 20rem;
+    padding: 1rem 1.5rem;
+    border-radius: 3rem;
+    background-color: rgb(211, 206, 206);
+    display: none;
+    gap: 1rem;
+    position: fixed;
+    align-self: center;
+    transform: translateY(-130%);
+    transition: transform .5s ease;
+    
+}
+
+#message {
+    flex: 1;
+    font-weight: 400;
+    font-family: sans-serif;
+    color: black;
+    font-size: 1.1rem;
+    margin-block-start: .3rem;
+}
+
+#typeIc {
+    width: 30px;
+    height: 30px;
+}
