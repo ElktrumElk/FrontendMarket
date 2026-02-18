@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import { addpost, addUser, getUser, login, modifyDataValue, modifyPostValue } from "../index.js";
+import { addpost, addUser, getUser, login, modifyDataValue, modifyPostValue, fetchPosts } from "../index.js";
 import session from "express-session";
 import multer from "multer";
 import fs from "fs";
@@ -122,10 +122,36 @@ app.post("/api/user", async (req, res) => {
 
             const userValid = await getUser(req.session.userId);
 
-            console.log(userValid[1][0])
+            if (userValid[0] == true) {
+
+                res.json(JSON.stringify({ info: userValid[1][0] }));
+            }
+            else {
+                req.session.isLogin = false;
+                res.redirect("/log");
+            }
+        }
+    }
+    catch (e) {
+
+        res.redirect("/log");
+
+    }
+
+})
+
+
+app.get("/api/usr", async (req, res) => {
+
+    try {
+
+        if (req.query.userId) {
+
+            const userValid = await getUser(req.query.userId);
+
+        
 
             if (userValid[0] == true) {
-                console.log("y")
                 res.json(JSON.stringify({ info: userValid[1][0] }));
             }
             else {
@@ -144,8 +170,6 @@ app.post("/api/user", async (req, res) => {
 
 app.post("/api/user/createAccount", async (req, res) => {
 
-    console.log(process.env.DB_KEY);
-
     const name = req.body.fname;
     const username = req.body.username;
     const pwd = req.body.password;
@@ -156,7 +180,6 @@ app.post("/api/user/createAccount", async (req, res) => {
     const usertag = `@${username.toLowerCase()}`;
 
     const acc = await addUser([name, username, pwd, usertag, " ", email, userId, 1.00]);
-    console.log(acc);
 
     if (acc[0] == true) {
         req.session.isLogin = true;
@@ -171,9 +194,6 @@ app.post("/api/user/createAccount", async (req, res) => {
 
 app.post("/profileImage/upload", upload.single("image"), async (req, res) => {
     try {
-
-        console.log(req.file.filename);
-
         const up = await modifyDataValue("p_img_link", req.file.filename, req.session.userId);
 
         if (up[0] === true) {
@@ -213,8 +233,7 @@ app.post("/api/user/add/post", async (req, res) => {
     const data = JSON.parse(req.body.info);
     const postId = `${data.tName.slice(4)}_${req.session.userId.slice(4)}${Date.now()}`
     const __addPost = await addpost(req.session.userId, postId, "", "", data.tName, data.tPrice, data.tDes, data.tCat);
-    console.log(__addPost);
-    
+
     if (__addPost[0] === true) {
         console.log("New post");
         req.session.postId = postId;
@@ -254,7 +273,7 @@ app.post("/postImage/upload", upload.single("image"), async (req, res) => {
 //======================a post endpoint to store template images===============================
 app.post("/post/file/upload", postUplaod.array("files", 10), async (req, res) => {
     try {
-        
+
         console.log("file uploaded successfully");
         const up = await modifyPostValue("postdir", `${req.session.userId}/post_${req.session.postId}`, req.session.userId, req.session.postId);
 
@@ -270,7 +289,23 @@ app.post("/post/file/upload", postUplaod.array("files", 10), async (req, res) =>
     catch (e) {
         console.error("An error occur:", e);
     };
+});
 
+/**
+ * Get posts 
+ */
+app.get("/get/posts", async (req, res) => {
+    const cursor = req.query.cursor;
+
+    const rest = await fetchPosts(cursor);
+
+    if (rest[0] === true) {
+        res.json({ state: true, data: rest[1] })
+    }
+    else {
+        res.json({ state: false, data: "error!" })
+        console.log(res[1]);
+    }
 });
 
 app.listen(3000, "0.0.0.0", () => {

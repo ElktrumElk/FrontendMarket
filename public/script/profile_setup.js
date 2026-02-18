@@ -1,10 +1,11 @@
 const image = document.getElementById("pp");
 const bio = document.getElementById("userBio");
-const file_Selector = document.getElementById("file_selector");
+const username = document.getElementById("usr");
+const file_Selector = document.getElementById("fileSelector");
 const fileHandler = document.getElementById("file_handler");
 
 const skipBtn = document.getElementById("skip");
-const uploadBtn = document.getElementById("uploadBtn");
+const uploadBtn = document.getElementById("upload");
 
 fileHandler.addEventListener("click", () => {
     file_Selector.click();

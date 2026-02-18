@@ -129,6 +129,22 @@ export async function modifyPostValue(dataname, value, USERID, postid) {
 
 }
 
+/**
+ * 
+ * @param {number} cur accept integer value
+ * @returns 
+ */
+export async function fetchPosts(cur) {
+  try {
+
+    const [ps] = await db.query("SELECT * FROM posts WHERE id < ? ORDER BY id DESC LIMIT 5", [cur]);
+    return [true, ps];
+  }
+  catch (e) {
+    console.log("error occur whiles retreiving the posts", e);
+    return [false, e]
+  }
+}
 
 //let info = ["Elkanah Cole", "Developer", "123456", "2000-05-10", "USR001", 500.00]
 /*

@@ -1,4 +1,5 @@
-import animatePanel from "./animate_panel";
+import animatePanel from "./animate_panel.js";
+import { renderCard } from "./render_card.js";
 
 const addPanel = document.getElementById("addPanel");
 const addBtn = document.getElementById("add");
@@ -11,7 +12,7 @@ const description = document.getElementById("tem_des"); //description
 const Name = document.getElementById("tem_name"); // name of the template given
 const templateFiles = document.getElementById("file_selector");
 const templateImage = document.getElementById("img_selector");
-
+const MainGridElement = document.getElementById("main");
 
 /**
     * New formdata form the template files
@@ -62,6 +63,9 @@ UploadBtn.addEventListener("click", async () => {
                 axis: "Y",
                 value: 100
             });
+            const chachedData = JSON.parse(sessionStorage.getItem("inf"))
+            renderCard(MainGridElement, chachedData.p_img_link, chachedData.username, chachedData.user_tag, info.tDes);
+            document.body.style.overflow = "";
         }
         else {
 
@@ -69,7 +73,7 @@ UploadBtn.addEventListener("click", async () => {
         }
     }
     else {
-        
+
         alert("There was a problem uploading you template. Try again later");
     }
 
