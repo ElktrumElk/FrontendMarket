@@ -1,14 +1,15 @@
 :root {
+
     --bg-color: rgb(252, 253, 255);
     --forground-el-cl: rgba(238, 245, 249, 0.418);
     --forground-el-cl-b: rgba(194, 192, 192, 0.418);
+    --forground-el-cl-c: rgb(208, 209, 210);
     --nav-link-cl: transparent;
     --text-cl: rgb(0, 0, 0);
     --card-bg: rgba(247, 250, 251, 0.473);
     --bell-bg: none;
     --side-bar: rgb(255, 251, 251);
     --dust-cl: rgba(244, 247, 250, 0.845);
-
 
 }
 
@@ -179,11 +180,12 @@ body {
 
 }
 
-.btns {
+.btns2 {
 
     width: 9rem;
     height: 3rem;
-    background-color: var(--forground-el-cl);
+    background-color: var(--forground-el-cl-c);
+
     border-radius: 1rem;
     color: var(--text-cl);
     font-weight: bolder;
@@ -398,6 +400,7 @@ body {
     border: 2px solid rgb(67, 206, 245);
     border-radius: 10rem;
     object-fit: cover;
+    background-color: gray;
 
 }
 

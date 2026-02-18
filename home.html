@@ -7,8 +7,8 @@
 
     <title>Frontend Market</title>
 
-    <link rel="stylesheet" href="./style/style.css">
-    <link rel="stylesheet" href="./style/add_templates.css">
+    <link rel="stylesheet" href="/style/add_templates.css">
+    <link rel="stylesheet" href="/style/style.css">
 </head>
 
 <body>
@@ -18,20 +18,20 @@
 
             <!--------------PROFILE CARD START---------------------->
             <div class="profile_cnt">
-                <img id="sidebar_close" class="sidebar_close_btn" src="./icons8-search-ios-17-filled/close_ic.png" />
+                <img id="sidebar_close" class="sidebar_close_btn" src="/icons8-search-ios-17-filled/close_ic.png" />
 
                 <div class="profile_cnt_column">
 
                     <div class="profile_cnt_row">
-                        <img class="side_profile_img" src="./images/IMG_2066.JPG" alt="profile" />
+                        <img id="pp_img" class="side_profile_img" src="/images/IMG_2066.JPG" alt="profile" />
 
                         <div class="username_bio_cnt">
-                            <h1>Elktrum Elk</h1>
-                            <span>@Vector Runner</span>
+                            <h1 id="profilename">Elktrum Elk</h1>
+                            <span id="profileTag">@Vector Runner</span>
                         </div>
                     </div>
 
-                    <p>Hey my name is Elkanah Cole and i am a frontend developer, developing better UX and clean UI with
+                    <p id="profileBIo">Hey my name is Elkanah Cole and i am a frontend developer, developing better UX and clean UI with
                         better responsiveness. i recommend you to contact me cause u won't regrete it. I am The</p>
 
                 </div>
@@ -39,9 +39,9 @@
                 <!----------PROFILE CARD END-------------------------->
             </div> <!----------PROFILE CARD END-------------------------->
             <div class="f">
-                <span>Following 1</span>
-                <span>Followers 200</span>
-                <span>Products 10</span>
+                <span id="following">Following 0</span>
+                <span id="follower">Followers 0</span>
+                <span id="product">Products 0</span>
             </div>
 
             <div class="settings_cnt">
@@ -123,7 +123,7 @@
         </div>
         <div class="label_inp">
             <button id="cancel_add" class="upload_btn">Cancel</button>
-            <button class="upload_btn" style="margin-inline-start: auto;">Upload</button>
+            <button id="uploadBtn" class="upload_btn" style="margin-inline-start: auto;">Upload</button>
         </div>
     </div>
 
@@ -136,8 +136,8 @@
             <h1 class="logoName">Frontend Market</h1>
 
             <div class="search_cnt">
-                <img class="searc_icon" src="./icons8-search-ios-17-filled/bell_ic_dark.png" alt="bell" />
-                <img id="acc_menu" class="acc_setting" src="./images/IMG_2066.JPG" alt="profile" draggable="false">
+                <img class="searc_icon" src="/icons8-search-ios-17-filled/bell_ic_dark.png" alt="bell" />
+                <img id="acc_menu" class="acc_setting" src="/images/IMG_2066.JPG" alt="profile" draggable="false">
             </div>
 
         </header>
@@ -165,16 +165,16 @@
                     <img class="p_image">
 
                     <div class="name_cnt">
-                        <h2>Elkrum Elk</h2>
+                        <h2 id="name">Elkrum Elk</h2>
                         <span class="tags">@LandingPage</span>
                     </div>
 
                 </div>
                 <div class="prev"></div>
-
+                <p class="des">This is a simaple template to work on</p>
                 <div class="btns_cnt">
-                    <button class="btns">Preview</button>
-                    <button class="btns" style="background-color: rgb(67, 206, 245);">Download</button>
+                    <button class="btns2">Preview</button>
+                    <button class="btns2" style="background-color: rgb(67, 206, 245);">Download</button>
                 </div>
             </article>
 
@@ -182,17 +182,19 @@
 
         <div id="q_a_c" class="quick_access_cnt">
             <span id="nav_marker" class="is_selected"></span>
-            <img id="home" class="quick_access" src="./icons8-search-ios-17-filled/homeIc.png" alt="Home"
+            <img id="home" class="quick_access" src="/icons8-search-ios-17-filled/homeIc.png" alt="Home"
                 draggable="false" />
-            <img id="add" class="quick_access" src="./icons8-search-ios-17-filled/addIcon.png" alt="add"
+            <img id="add" class="quick_access" src="/icons8-search-ios-17-filled/addIcon.png" alt="add"
                 draggable="false" />
-            <img id="search" class="quick_access" src="./icons8-search-ios-17-filled/icons8-search-150.png" alt="search"
+            <img id="search" class="quick_access" src="/icons8-search-ios-17-filled/icons8-search-150.png" alt="search"
                 draggable="false" />
         </div>
         <footer class="foot"></footer>
     </div>
 
-    <script src="./script.js" type="module"></script>
+    <script src="/script/script.js" type="module"></script>
+    <script src="/script/home.js" type="module"></script>
+    <script src="/script/productUpload.js" type="module"></script>
 </body>
 
 </html>

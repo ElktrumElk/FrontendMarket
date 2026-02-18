@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Market | Profile Setup</title>
+
+    <link rel="stylesheet" href="/style/profile_setup.css">
+
+</head>
+
+<body>
+    <div class="cnt">
+
+        <h1>Set up you profile</h1>
+        <div id="file_handler" class="pp_cnt">
+            <img id="pp" src="#" style="display: flex; flex-direction: column; text-align: center; border: 2px solid rgb(25, 125, 240);" alt="Please Select an Image" />
+        </div>
+        <input id="fileSelector" type="file" accept="image/*" hidden />
+        <h2 id="usr">Elktrum Elk</h2>
+
+        <label for="userBio">Bio</label>
+        <input type="text" id="userBio" />
+
+        <div class="btn_cnt">
+            <button id="skip" class="btn">Skip</button>
+            <button id="upload" class="btn">Upload</button>
+        </div>
+
+    </div>
+
+    <script src="/script/profile_setup.js"></script>
+</body>
+
+</html>

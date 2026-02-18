@@ -107,12 +107,6 @@ document.body.addEventListener("touchend", () => {
     }
 })
 
-//demo
-for (let i = 0; i < 20; i++) {
-    const newCard = card.cloneNode(true);
-
-    main.appendChild(newCard);
-}
 
 /**=====================SIDEBAR SECTION=============================== */
 let isMenuOpened = false;
@@ -169,8 +163,10 @@ const addPanel = document.getElementById("addPanel");
 const addBtn = document.getElementById("add");
 const homeBtn = document.getElementById("home");
 const addCancel = document.getElementById("cancel_add");
+const UploadBtn = document.getElementById("uploadBtn");
 let isAddActive = false;
 
+//to display the section of the page
 addBtn.addEventListener("click", () => {
 
     document.body.style.overflow = "hidden";
@@ -184,6 +180,7 @@ addBtn.addEventListener("click", () => {
     }
 });
 
+//cancel the upload
 addCancel.addEventListener("click", () => {
     if (isAddActive) {
 
@@ -203,7 +200,10 @@ addCancel.addEventListener("click", () => {
     }
 })
 
-
+//set to flag to false to prevent unexpected behaviour
+UploadBtn.addEventListener("click", () => {
+    isAddActive = false;
+});
 
 const imageHandler = document.getElementById("img");
 const imageSelector = document.getElementById("img_selector");

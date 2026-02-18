@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Market | Login</title>
+
+    <link rel="stylesheet" href="./style/login.css">
+</head>
+
+<body>
+    <div class="login_cnt">
+        <h1>Create Account</h1>
+        <form action="/api/user/createAccount" method="post">
+
+            <div class="row_cnt">
+                <label for="name" >Fullname</label>
+                <input class="inp" id="name" name="fname" type="text" required>
+            </div>
+
+            <div class="row_cnt">
+                <label for="usrname">Username</label>
+                <input class="inp" name="username" id="usrname" type="text" required>
+            </div>
+
+            <div class="row_cnt">
+                <label for="passwd">Password</label>
+                <input class="inp" name="password" id="passwd" type="password" required>
+            </div>
+
+            <div class="row_cnt">
+                <label for="email">Email</label>
+                <input class="inp" name="email" id="email" type="email" required>
+            </div>
+
+            <button class="submit_button" type="submit">Create Account</button>
+        </form>
+
+        <p class="span">Already have an account? <a href="./login.html"> Login </a></p>
+    </div>
+</body>
+
+</html>
