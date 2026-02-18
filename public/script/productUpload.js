@@ -1,3 +1,5 @@
+import animatePanel from "./animate_panel";
+
 const addPanel = document.getElementById("addPanel");
 const addBtn = document.getElementById("add");
 const homeBtn = document.getElementById("home");
@@ -11,11 +13,25 @@ const templateFiles = document.getElementById("file_selector");
 const templateImage = document.getElementById("img_selector");
 
 
+/**
+    * New formdata form the template files
+    */
+const tempform = new FormData();
+
+templateFiles.addEventListener("change", () => {
+
+    //apppend the multiple of files to the form data with one keyname
+    [...templateFiles.files].forEach(file => {
+        tempform.append("files", file);
+    });
+
+});
+
+
 UploadBtn.addEventListener("click", async () => {
     const form = new FormData();
     form.append("image", templateImage.files[0]);
-    const tempform = new FormData();
-    tempform.append("files", [...tempFiles.files]);
+
 
 
     //form.append("files", [...templateFiles.files]);
@@ -29,7 +45,7 @@ UploadBtn.addEventListener("click", async () => {
     const res = await fetch("/api/user/add/post", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: info
+        body: JSON.stringify({ "info": JSON.stringify(info) })
     });
 
     const data = await res.json();
@@ -42,14 +58,20 @@ UploadBtn.addEventListener("click", async () => {
 
         const data = await res.json();
         if (data) {
-
+            animatePanel(addPanel, {
+                axis: "Y",
+                value: 100
+            });
         }
         else {
+
             alert("An error occur");
         }
     }
     else {
+        
         alert("There was a problem uploading you template. Try again later");
     }
+
 });
 

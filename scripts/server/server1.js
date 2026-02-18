@@ -18,10 +18,12 @@ const storage = multer.diskStorage({
 });
 
 const postStorage = multer.diskStorage({
+
     destination: (req, file, cb) => {
+
         const userId = req.session.userId;
         const postId = req.session.postId;
-        const uploadPath = path.join(__dirname, "../../posts", "users", userId, `post_${postId}${userId}`);
+        const uploadPath = path.join(__dirname, "../../posts", "users", userId, `post_${postId}`);
 
         fs.mkdir(uploadPath, { recursive: true }, (err) => {
 
@@ -46,7 +48,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../../public")));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../../uploads")));
-app.use(express.static(path.join(__dirname, "../../posts")))
+app.use(express.static(path.join(__dirname, "../../posts/users")))
 app.use(session({
     secret: "123456789",
     resave: false,
@@ -208,13 +210,14 @@ app.post("/api/user/profile", async (req, res) => {
 //=================================To add post to the data base===================================
 app.post("/api/user/add/post", async (req, res) => {
 
-    const data = req.body;
+    const data = JSON.parse(req.body.info);
     const postId = `${data.tName.slice(4)}_${req.session.userId.slice(4)}${Date.now()}`
-    const __addPost = addpost(req.session.userId, postId, "", "", data.tName, data.tPrice, data.tDes, data.tCat);
-
+    const __addPost = await addpost(req.session.userId, postId, "", "", data.tName, data.tPrice, data.tDes, data.tCat);
+    console.log(__addPost);
+    
     if (__addPost[0] === true) {
         console.log("New post");
-        req.session.post_id = postId;
+        req.session.postId = postId;
         res.json({ state: true, message: "Successfully added" });
     }
     else {
@@ -249,19 +252,18 @@ app.post("/postImage/upload", upload.single("image"), async (req, res) => {
 
 
 //======================a post endpoint to store template images===============================
-app.post("/post/file/upload", postUplaod.single("files"), async (req, res) => {
+app.post("/post/file/upload", postUplaod.array("files", 10), async (req, res) => {
     try {
-
-        console.log(req.file.filename);
-
-        const up = await modifyPostValue("post_dir", req.file.path, req.session.userId, req.session.post_id);
+        
+        console.log("file uploaded successfully");
+        const up = await modifyPostValue("postdir", `${req.session.userId}/post_${req.session.postId}`, req.session.userId, req.session.postId);
 
         if (up[0] === true) {
             res.json({ message: "Image uploaded successfuly " });
         }
 
         else {
-            console.log("Error saving image path in the db", up[1]);
+            console.log("Error saving file path in the db", up[1]);
             res.json({ message: "Problem uploading image to the server" });
         };
     }
