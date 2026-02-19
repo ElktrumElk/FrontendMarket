@@ -1,12 +1,14 @@
 
 .panel {
-    width: 20rem;
+    min-width: 10rem;
+    max-width: 30rem;
     padding: 1rem 1.5rem;
     border-radius: 3rem;
     background-color: rgb(211, 206, 206);
     display: none;
     gap: 1rem;
     position: fixed;
+    top: 0;
     align-self: center;
     transform: translateY(-130%);
     transition: transform .5s ease;

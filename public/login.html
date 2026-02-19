@@ -7,12 +7,13 @@
     <title>Frontend Market | Login</title>
 
     <link rel="stylesheet" href="/style/login.css">
+    <link rel="stylesheet" href="/style/demo.css">
 </head>
 
 <body>
     <div class="login_cnt">
         <h1>Login</h1>
-        <form action="/login" method="post" autocomplete="on">
+        <form id="loginForm" autocomplete="on">
 
             <div class="row_cnt">
                 <label for="usrname">Username</label>
@@ -30,6 +31,8 @@
 
         <p class="span">If you dont yet have an account<a href="/creatAccount"> Create an Account</a></p>
     </div>
+
+    <script src="/script/login.js" type="module"></script>
 </body>
 
 </html>

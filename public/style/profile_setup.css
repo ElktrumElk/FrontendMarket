@@ -25,9 +25,10 @@ body {
     border-radius: 9rem;
     margin-block-start: 1rem;
     object-fit: cover;
+    object-position: center;
+    object-view-box: 30px;
     overflow: auto;
     background: black;
-    background-size: cover;
 }
 
 .pp_cnt::-webkit-scrollbar {
@@ -38,7 +39,7 @@ body {
     max-width: 300px;
     max-height: 300px;
     backdrop-filter: blur(20px);
-
+    object-fit: cover;
 }
 
 #userBio {

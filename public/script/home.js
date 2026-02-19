@@ -24,19 +24,17 @@ async function fetchInfo() {
     });
 
     const data = await res.json();
-    const info = JSON.parse(data);
+    const info = JSON.parse(data.info);
 
-    sessionStorage.setItem("inf", JSON.stringify(info.info));
-
-    pName.innerText = info.info.username;
-    pTag.innerText = info.info.user_tag;
-    pBio.innerText = info.info.userbio;
-    pp.src = "/" + info.info.p_img_link;
-    menuBtnImage.src = "/" + info.info.p_img_link;
-    follower.innerText = "Followers \n"+info.info.followers;
-    following.innerText = "Following \n"+info.info.following;
-    product.innerText = "Products \n"+info.info.products;
-}
+    pName.innerText = info.username;
+    pTag.innerText = info.user_tag;
+    pBio.innerText = info.userbio;
+    pp.src = "/" + info.p_img_link;
+    menuBtnImage.src = "/" + info.p_img_link;
+    follower.innerText = "Followers \n"+info.followers;
+    following.innerText = "Following \n"+info.following;
+    product.innerText = "Products \n"+info.products;
+};
 
 fetchInfo();
 
@@ -48,19 +46,18 @@ async function fetchposts() {
     const data = await res.json();
 
     if (data.state === true) {
-        Array.from(data.data).forEach(async inf => {
+        Array.from(data.data).forEach(async inf => { /*post details */
 
             const res = await fetch(`/api/usr?userId=${inf.user_id}`, {
                 method: "GET",
             });
 
             const data = await res.json();
-            const info = JSON.parse(data);
+            const info = JSON.parse(data); //user details
+            console.log(inf)
 
-            renderCard(MainGridElement, "/" + info.info.p_img_link, info.info.username, info.info.user_tag, inf.post_des);
-
+            renderCard(MainGridElement, "/" + info.info.p_img_link, info.info.username, info.info.user_tag, inf.post_des, inf.post_name, inf.post_price, inf.post_img);
         })
-        console.log(data.data);
     };
 };
 

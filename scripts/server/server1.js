@@ -17,6 +17,7 @@ const storage = multer.diskStorage({
     }
 });
 
+/**Saves the template files */
 const postStorage = multer.diskStorage({
 
     destination: (req, file, cb) => {
@@ -35,9 +36,35 @@ const postStorage = multer.diskStorage({
     filename: (req, file, cb) => {
         cb(null, Date.now() + "-" + file.originalname);
     }
+});
+
+/**
+ * Saves the template image
+ */
+const tempDisk = multer.diskStorage({
+    destination: (req, file, cb) => {
+        const userId = req.session.userId;
+        const postId = req.session.postId;
+        const uploadPath = path.join(__dirname, "../../posts", "users", userId, `post_${postId}`, "images");
+
+        fs.mkdir(uploadPath, { recursive: true }, (err) => {
+
+            if (err) return cb(err, uploadPath);
+            cb(null, uploadPath);
+
+        });
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + "-" + file.originalname);
+    }
 })
 
+//save the template files in the given folder
 const postUplaod = multer({ storage: postStorage });
+
+//Comment: save the template image to the givin folder.
+const productImg = multer({storage: tempDisk}); 
+
 
 const app = express();
 
@@ -84,52 +111,66 @@ app.get("/creatAccount", (req, res) => {
 
 
 app.get("/setup/profile", (req, res) => {
-    res.sendFile(path.join(__dirname, "../../public", "profileSetUp.html"));
-});
+    if (req.session.isLogin) {
+        res.sendFile(path.join(__dirname, "../../public", "profileSetUp.html"));
+    } else {
 
-
-const upload = multer({ storage: storage });
-
-
-
-app.post("/login", async (req, res) => {
-
-    const username = req.body.username;
-    const pwd = req.body.password;
-
-    const validator = await login(username, pwd);
-
-    if (validator[0] === true) {
-
-        req.session.isLogin = true;
-        req.session.user = username;
-        req.session.userId = validator[1];
-
-        res.redirect("/home");
-    }
-    else {
-
-        req.session.isLogin = false;
         res.redirect("/log");
     }
 });
 
-app.post("/api/user", async (req, res) => {
+//save user profile image
+const upload = multer({ storage: storage });
 
+app.post("/login", async (req, res) => {
+    try {
+
+        const username = req.body.username;
+        const pwd = req.body.password;
+
+        const validator = await login(username, pwd);
+
+        if (validator[0] === true) {
+
+            req.session.isLogin = true;
+            req.session.user = username;
+            req.session.userId = validator[1];
+            console.log(validator);
+
+            res.json({ state: true, message: "Success" });
+        }
+        else {
+
+            req.session.isLogin = false;
+            res.json({ state: false, message: "Invalid Username or Password" });
+
+        }
+    }
+    catch (e) {
+        res.json({ state: false, message: "An error occure in our end. Please try again later" });
+        console.log("Login", e);
+    }
+});
+
+app.post("/api/user", async (req, res) => {
+    console.log("first: ", req.session.userId);
     try {
 
         if (req.session.userId) {
 
+            console.log("second: ", req.session.userId);
             const userValid = await getUser(req.session.userId);
 
             if (userValid[0] == true) {
-
-                res.json(JSON.stringify({ info: userValid[1][0] }));
+                console.log("yup")
+                res.json({ info: JSON.stringify(userValid[1][0]) });
             }
             else {
                 req.session.isLogin = false;
                 res.redirect("/log");
             }
+        } else {
+            res.redirect("/log");
         }
     }
     catch (e) {
@@ -166,31 +207,50 @@ app.get("/api/usr", async (req, res) => {
 app.post("/api/user/createAccount", async (req, res) => {
 
     const name = req.body.fname;
-    const username = req.body.username;
+    const username = req.body.username.trim();
     const pwd = req.body.password;
     const email = req.body.email;
 
-    const randId = Math.floor(Math.random() * 999999);
-    const userId = `${username}_${randId}`;
-    const usertag = `@${username.toLowerCase()}`;
+    if (username.includes(" ")) {
+        res.json({ state: false, message: "Username Should not contain space. Only characters, numbers and letters", src: "/" }); //sends data 
+    }
+    else if (!email.includes("@")) {
+        res.json({ state: false, message: "Email address should contain '@'", src: "/" }); //sends data 
+    }
+    else if (name == "" || name == " ") {
+        res.json({ state: false, message: "Please fill in the name field", src: "/" }); //sends data 
+    }
+    else if (email === "" || email === "@") {
+        res.json({ state: false, message: "Please email is required", src: "/" }); //sends data 
+    }
+    else {
 
-    const acc = await addUser([name, username, pwd, usertag, " ", email, userId, 1.00]);
+        const randId = Math.floor(Math.random() * 999999);
+        const userId = `${username}_${randId}`;
+        const usertag = `@${username.toLowerCase()}`;
 
-    if (acc[0] == true) {
-        req.session.isLogin = true;
-        req.session.user = username;
-        req.session.userId = userId;
-        res.redirect('/setup/profile');
+        //Comment: saves user value in the db
+        const acc = await addUser([name, username, pwd, usertag, " ", email, userId, 1.00]);
 
-    } else {
-        res.redirect('/creatAccount');
+        if (acc[0] == true) {
+
+            req.session.isLogin = true;
+            req.session.user = username;
+            req.session.userId = userId;
+
+            res.json({ state: true, message: "Success", src: "/setup/profile" }); //sends data 
+
+        } else {
+            res.json({ state: false, message: "An Error Occure whiles creating you account. Please try again", src: "/" }); //sends data 
+        }
     }
 });
 
+//==================================Comment: Upload profile Image======================================================================
 app.post("/profileImage/upload", upload.single("image"), async (req, res) => {
     try {
-        const up = await modifyDataValue("p_img_link", req.file.filename, req.session.userId);
 
+        const up = await modifyDataValue("p_img_link", req.file.filename, req.session.userId);
         if (up[0] === true) {
             res.json({ message: "Image uploaded successfuly " });
         }
@@ -202,6 +262,33 @@ app.post("/profileImage/upload", upload.single("image"), async (req, res) => {
     }
     catch (e) {
         console.error("An error occur:", e);
+    };
+
+});
+
+//=================================Upload product Image===============================
+app.post("/template/img/upload", productImg.single("image"), async (req, res) => {
+    try {
+
+        const userId = req.session.userId;
+        const postId = req.session.postId;
+        const file = req.file;
+
+        const path = `${userId}/post_${postId}/images/${Date.now()}-${file.originalname}`;
+
+        const up = await modifyPostValue("post_img", path, req.session.userId, req.session.postId);
+        if (up[0] === true) {
+            res.json({ state: true, message: "Image uploaded successfuly" });
+        }
+
+        else {
+            console.error("Error saving image path in the db", up[1]);
+            res.json({ state: false, message: "Error uploading template" });
+        };
+    }
+    catch (e) {
+        console.error("An error occur:", e);
+        res.json({ state: false, message: "Error uploading template" });
     };
 
 });
@@ -302,6 +389,18 @@ app.get("/get/posts", async (req, res) => {
         console.log(res[1]);
     }
 });
+
+//**=====================Logout user============================ */
+app.get("/user/logout", (req, res) => {
+    req.session.userId = null;
+    req.session.isLogin = false;
+    req.session.postId = null;
+    req.session.user = null;
+
+    console.log("yo")
+    res.json({ message: "hey" })
+});
+
 
 app.listen(3000, "0.0.0.0", () => {
     console.log("Server running on port 3000");

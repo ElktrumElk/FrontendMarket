@@ -1,6 +1,6 @@
-import animatePanel from "../animate_panel";
+import animatePanel from "../animate_panel.js";
 
-export default function notificationPanel(message, type) {
+export default function notificationPanel({ message = "", type = "success", toggleTime = 1000 }) {
 
     const panel = document.createElement("div");
     panel.setAttribute("class", "panel");
@@ -20,8 +20,22 @@ export default function notificationPanel(message, type) {
 
     panel.appendChild(img);
     panel.appendChild(msg);
-
+    
     document.body.appendChild(panel);
 
-    animatePanel()
+    animatePanel(panel, {
+        axis: "Y",
+        value: 0
+    });
+
+    setTimeout(() => {
+        animatePanel(panel, {
+            axis: "Y",
+            value: -140
+        });
+
+        setTimeout(() => {
+            panel.remove();
+        }, toggleTime)
+    }, toggleTime);
 }

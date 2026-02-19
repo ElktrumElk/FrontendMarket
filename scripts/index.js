@@ -33,24 +33,26 @@ export async function addUser(info) {
 export async function login(username, password) {
 
   try {
+    //comment: Gets the username
     const [row] = await db.query("SELECT password FROM users WHERE username = ?", [username]);
 
+    //Comment: Validate. If username does not exist return a non identical hint
     if (row.length === 0) { return [false, "Invalid username or password"] };
 
+    //Comment: Check is password entered is equals to the password in the db
     if (password === row[0].password) {
-
-      const [userId] = await db.query("SELECT userId FROM users WHERE password = ?", [password])
+      //Comment: Final validation to get user ID 
+      const [userId] = await db.query("SELECT userId FROM users WHERE password = ? AND username = ?", [password, username])
       return [true, userId[0].userId];
     }
     else {
-
-      console.log("Invalig credintial");
-      return [false, "No user found"];
-
+      console.log("NO user found");
+      return [false, "Invalid username or password"];
     }
   }
   catch (e) {
     console.error("An error occur:", e);
+    return [false, "An error occur in our end. Try again"];
   }
 }
 

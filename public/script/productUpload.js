@@ -52,30 +52,45 @@ UploadBtn.addEventListener("click", async () => {
     const data = await res.json();
 
     if (data.state === true) {
-        const res = await fetch("/post/file/upload", {
+        const imgRes = await fetch('/template/img/upload', {
             method: "POST",
-            body: tempform
+            body: form
         });
 
-        const data = await res.json();
-        if (data) {
-            animatePanel(addPanel, {
-                axis: "Y",
-                value: 100
+        //listen for th eresponse of the image
+        const imgData = await imgRes.json();
+
+        //Comment: Validate;
+        if (imgData.state === true) {
+
+            const res = await fetch("/post/file/upload", {
+                method: "POST",
+                body: tempform
             });
-            const chachedData = JSON.parse(sessionStorage.getItem("inf"))
-            renderCard(MainGridElement, chachedData.p_img_link, chachedData.username, chachedData.user_tag, info.tDes);
-            document.body.style.overflow = "";
+
+            const data = await res.json();
+
+            if (data) {
+                //animate panel if upload successful
+                animatePanel(addPanel, {
+                    axis: "Y",
+                    value: 100
+                });
+                const chachedData = JSON.parse(sessionStorage.getItem("inf"))
+                renderCard(MainGridElement, chachedData.p_img_link, chachedData.username, chachedData.user_tag, info.tDes);
+                document.body.style.overflow = "";
+            }
+            else {
+                alert("An error occur");
+            }
         }
         else {
-
-            alert("An error occur");
+            alert("Unable to upload image");
         }
     }
     else {
-
         alert("There was a problem uploading you template. Try again later");
     }
-
 });
+
 

@@ -7,21 +7,24 @@
     <title>Frontend Market | Login</title>
 
     <link rel="stylesheet" href="./style/login.css">
+    <link rel="stylesheet" href="./style/demo.css">
 </head>
 
 <body>
+    <h1 style="text-align: center;">Set up an account. If already have you can sign in</h1>
     <div class="login_cnt">
-        <h1>Create Account</h1>
-        <form action="/api/user/createAccount" method="post">
+        <h2>Create Account</h2>
+        <form id="create_account_form">
 
             <div class="row_cnt">
-                <label for="name" >Fullname</label>
+                <label for="name">Fullname</label>
                 <input class="inp" id="name" name="fname" type="text" required>
             </div>
 
             <div class="row_cnt">
                 <label for="usrname">Username</label>
                 <input class="inp" name="username" id="usrname" type="text" required>
+                <span style="font-family: sans-serif;">Only letters(a-z), number(0-9) and underscore </span>
             </div>
 
             <div class="row_cnt">
@@ -32,6 +35,8 @@
             <div class="row_cnt">
                 <label for="email">Email</label>
                 <input class="inp" name="email" id="email" type="email" required>
+                <span style="font-family: sans-serif;">Email Should contain '@'</span>
+
             </div>
 
             <button class="submit_button" type="submit">Create Account</button>
@@ -39,6 +44,8 @@
 
         <p class="span">Already have an account? <a href="./login.html"> Login </a></p>
     </div>
+
+    <script src="/script/createAccount.js" type="module"></script>
 </body>
 
 </html>

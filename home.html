@@ -32,7 +32,8 @@
                         </div>
                     </div>
 
-                    <p id="profileBIo">Hey my name is Elkanah Cole and i am a frontend developer, developing better UX and clean UI with
+                    <p id="profileBIo">Hey my name is Elkanah Cole and i am a frontend developer, developing better UX
+                        and clean UI with
                         better responsiveness. i recommend you to contact me cause u won't regrete it. I am The</p>
 
                 </div>
@@ -74,7 +75,11 @@
                 <span>font</span>
             </div>
 
-
+            <div class="settings_cnt">
+                <button id="logout"
+                    style="color: red; margin-block-end: 2rem; border-radius: 3rem; background-color: transparent; border: 1px solid gray; padding: 1rem 0rem;">Logout
+                </button>
+            </div>
         </div>
     </div>
 
@@ -83,12 +88,12 @@
 
         <div id="img" class="add_image">
             <h1>Select Image</h1>
-            <input id="img_selector" type="file" action="image/*" hidden/>
+            <input id="img_selector" type="file" action="image/*" hidden />
         </div>
 
         <div id="file_handler" class="files_cnt">
             <span>Please Select file</span>
-            <input id="file_selector" type="file" accept="*" multiple hidden> 
+            <input id="file_selector" type="file" accept="*" multiple hidden>
         </div>
 
         <div class="label_inp">
@@ -169,9 +174,16 @@
                         <h2 id="name">Elkrum Elk</h2>
                         <span class="tags">@LandingPage</span>
                     </div>
-
+                    <span class="price">LE400</span>
                 </div>
-                <div class="prev"></div>
+
+                <div class="prev">
+                    <img class="imgView" src="/images/IMG_2066.JPG" alt="img"/>
+                    <div class="tname_cnt">
+                        <h3>Template</h3>
+                    </div>
+                </div>
+
                 <p class="des">This is a simaple template to work on</p>
                 <div class="btns_cnt">
                     <button class="btns2">Preview</button>
@@ -193,9 +205,10 @@
         <footer class="foot"></footer>
     </div>
 
-    <script src="/script/script.js" type="module"></script>
-    <script src="/script/home.js" type="module"></script>
-    <script src="/script/productUpload.js" type="module"></script>
+    <script src="/script/script.js" type="module" async="true"></script>
+    <script src="/script/home.js" type="module" async="true"></script>
+    <script src="/script/productUpload.js" type="module" async="true"></script>
+    <script src="/script/logout.js" type="module" async="true"></script>
 </body>
 
 </html>
