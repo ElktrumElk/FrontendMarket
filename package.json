@@ -2,7 +2,8 @@
     "name": "f_market",
     "type": "module",
     "scripts": {
-        "db": "db.js"
+        "db": "db.js",
+        "start": "node ./scripts/server/server1.js"
     },
     "module": "./db.js",
     "devDependencies": {
