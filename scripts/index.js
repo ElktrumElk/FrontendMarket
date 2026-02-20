@@ -136,11 +136,18 @@ export async function modifyPostValue(dataname, value, USERID, postid) {
  * @param {number} cur accept integer value
  * @returns 
  */
-export async function fetchPosts(cur) {
+export async function fetchPosts({cur=null}) {
   try {
 
-    const [ps] = await db.query("SELECT * FROM posts WHERE id < ? ORDER BY id DESC LIMIT 5", [cur]);
-    return [true, ps];
+    if (cur === null) {
+      const [ps] = await db.query("SELECT * FROM posts ORDER BY id DESC LIMIT 5");
+      return [true, ps];
+    }
+    else {
+      const [ps] = await db.query("SELECT * FROM posts WHERE id < ? ORDER BY id DESC LIMIT 5", [cur]);
+      return [true, ps];
+    }
+
   }
   catch (e) {
     console.log("error occur whiles retreiving the posts", e);

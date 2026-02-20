@@ -1,16 +1,15 @@
 
 
-export function renderCard(parent, p_image, owner_name, tag, desc, temp_name, price_value, temp_img_src) {
+export function renderCard(parent, idx, p_image, owner_name, tag, desc, temp_name, price_value, temp_img_src) {
 
     //Comment: the main card
     const mainCard = document.createElement("article");
     mainCard.setAttribute("class", "template_card");
-    
-    if (parent.children.length == 0) {
-        parent.appendChild(mainCard);
-    }else {
-        parent.insertBefore(mainCard, parent.children[parent.children.length - 1]);
-    }
+    mainCard.setAttribute("id", `card${idx}`);
+
+
+    parent.appendChild(mainCard);
+
 
     //Comment: Profile Card that holds the username and tag with profile image and price
     /**
@@ -50,8 +49,10 @@ export function renderCard(parent, p_image, owner_name, tag, desc, temp_name, pr
     mainCard.appendChild(TempImg);
 
     const tempImage = document.createElement("img");
+    tempImage.setAttribute("class", "imgView");
     tempImage.src = temp_img_src;
     tempImage.alt = "template"
+
     TempImg.appendChild(tempImage);
 
     const tempNameCnt = document.createElement("div");

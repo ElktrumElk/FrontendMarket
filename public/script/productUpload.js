@@ -78,7 +78,7 @@ UploadBtn.addEventListener("click", async () => {
                 });
                 const chachedData = JSON.parse(sessionStorage.getItem("inf"))
                 renderCard(MainGridElement, chachedData.p_img_link, chachedData.username, chachedData.user_tag, info.tDes);
-                document.body.style.overflow = "";
+                document.body.style.overflowY = "";
             }
             else {
                 alert("An error occur");

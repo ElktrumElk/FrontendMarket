@@ -55,7 +55,10 @@ const tempDisk = multer.diskStorage({
         });
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + "-" + file.originalname);
+        const imgPath = Date.now() + "-" + file.originalname;
+        req.session.imgName = imgPath;
+
+        cb(null, imgPath);
     }
 })
 
@@ -63,7 +66,7 @@ const tempDisk = multer.diskStorage({
 const postUplaod = multer({ storage: postStorage });
 
 //Comment: save the template image to the givin folder.
-const productImg = multer({storage: tempDisk}); 
+const productImg = multer({ storage: tempDisk });
 
 
 const app = express();
@@ -75,7 +78,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../../public")));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../../uploads")));
-app.use(express.static(path.join(__dirname, "../../posts/users")))
+app.use(express.static(path.join(__dirname, "../../posts", "users")))
 app.use(session({
     secret: "123456789",
     resave: false,
@@ -274,10 +277,11 @@ app.post("/template/img/upload", productImg.single("image"), async (req, res) =>
         const postId = req.session.postId;
         const file = req.file;
 
-        const path = `${userId}/post_${postId}/images/${Date.now()}-${file.originalname}`;
+        const path = `${userId}/post_${postId}/images/${req.session.imgName}`;
 
         const up = await modifyPostValue("post_img", path, req.session.userId, req.session.postId);
         if (up[0] === true) {
+            console.log("yup");
             res.json({ state: true, message: "Image uploaded successfuly" });
         }
 
@@ -290,7 +294,6 @@ app.post("/template/img/upload", productImg.single("image"), async (req, res) =>
         console.error("An error occur:", e);
         res.json({ state: false, message: "Error uploading template" });
     };
-
 });
 
 //==================================Update user profile=============================
@@ -379,15 +382,34 @@ app.post("/post/file/upload", postUplaod.array("files", 10), async (req, res) =>
 app.get("/get/posts", async (req, res) => {
     const cursor = req.query.cursor;
 
-    const rest = await fetchPosts(cursor);
+    let rest = null;
 
-    if (rest[0] === true) {
-        res.json({ state: true, data: rest[1] })
+    if (cursor) {
+
+        rest = await fetchPosts({ cur: parseInt(cursor) });
+        if (rest[0] === true) {
+
+            res.json({ state: true, data: rest[1] })
+        }
+        else {
+            res.json({ state: false, data: "error!" })
+            console.log(rest[1]);
+        }
+    } else {
+
+        rest = await fetchPosts({cur: null});
+        if (rest[0] === true) {
+
+            res.json({ state: true, data: rest[1] })
+        }
+        else {
+            res.json({ state: false, data: "error!" })
+            console.log(rest[1]);
+        }
     }
-    else {
-        res.json({ state: false, data: "error!" })
-        console.log(res[1]);
-    }
+
+
+
 });
 
 //**=====================Logout user============================ */

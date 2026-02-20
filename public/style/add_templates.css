@@ -132,9 +132,14 @@ body.dark {
     width: 10%;
     height: 2rem;
     border: 1px solid gray;
-    background-color: var(--forground-el-cl);
+    background-color: transparent;
+    color: var(--text-cl);
     font-size: 1.3rem;
     border-radius: .8rem;
+    text-align: right;
+    margin-inline-start: auto;
+    border: none;
+    border-bottom: 1px solid gray;
 }
 
 .upload_btn {

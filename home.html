@@ -13,76 +13,6 @@
 </head>
 
 <body>
-
-    <div id="dis" class="dissabler">
-        <div id="side_bar" class="side_bar">
-
-            <!--------------PROFILE CARD START---------------------->
-            <div class="profile_cnt">
-                <img id="sidebar_close" class="sidebar_close_btn" src="/icons8-search-ios-17-filled/close_ic.png" />
-
-                <div class="profile_cnt_column">
-
-                    <div class="profile_cnt_row">
-                        <img id="pp_img" class="side_profile_img" src="/images/IMG_2066.JPG" alt="profile" />
-
-                        <div class="username_bio_cnt">
-                            <h1 id="profilename">Elktrum Elk</h1>
-                            <span id="profileTag">@Vector Runner</span>
-                        </div>
-                    </div>
-
-                    <p id="profileBIo">Hey my name is Elkanah Cole and i am a frontend developer, developing better UX
-                        and clean UI with
-                        better responsiveness. i recommend you to contact me cause u won't regrete it. I am The</p>
-
-                </div>
-                <div class="holo_dust"></div>
-                <!----------PROFILE CARD END-------------------------->
-            </div> <!----------PROFILE CARD END-------------------------->
-            <div class="f">
-                <span id="following">Following 0</span>
-                <span id="follower">Followers 0</span>
-                <span id="product">Products 0</span>
-            </div>
-
-            <div class="settings_cnt">
-                <h2>Account</h2>
-                <span>Account <span>></span></span>
-                <span>Privacy <span>></span></span>
-                <span>Personal Information <span>></span></span>
-            </div>
-
-            <div class="settings_cnt">
-                <h2>Media</h2>
-                <span>Products <span>></span></span>
-            </div>
-
-            <div class="settings_cnt">
-                <h2>Wallet</h2>
-                <span>Wallet <span>></span></span>
-                <span>Change Password <span>></span></span>
-                <span>Stats<span>></span></span>
-            </div>
-
-            <div class="settings_cnt">
-                <h2>Personal Preference</h2>
-                <span>Theme: light
-                    <div id="toggle" class="theme_toggle">
-                        <div id="ctr" class="toggle_ctrl"></div>
-                    </div>
-                </span>
-                <span>font</span>
-            </div>
-
-            <div class="settings_cnt">
-                <button id="logout"
-                    style="color: red; margin-block-end: 2rem; border-radius: 3rem; background-color: transparent; border: 1px solid gray; padding: 1rem 0rem;">Logout
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!----------------Add panel-------------->
     <div id="addPanel" class="add_panel">
 
@@ -133,9 +63,6 @@
         </div>
     </div>
 
-
-
-
     <div class="app">
 
         <header class="head">
@@ -162,37 +89,111 @@
             <a class="links">Event / Conference</a>
 
         </nav>
+        <div class="MainCnt">
+            <main id="main" class="main">
 
-        <main id="main" class="main">
+                <article id="card" class="template_card">
 
-            <article id="card" class="template_card">
+                    <div class="profile">
+                        <img class="p_image" />
 
-                <div class="profile">
-                    <img class="p_image">
-
-                    <div class="name_cnt">
-                        <h2 id="name">Elkrum Elk</h2>
-                        <span class="tags">@LandingPage</span>
+                        <div class="name_cnt">
+                            <h2 id="name">Elkrum Elk</h2>
+                            <span class="tags">@LandingPage</span>
+                        </div>
+                        <span class="price">LE400</span>
                     </div>
-                    <span class="price">LE400</span>
-                </div>
 
-                <div class="prev">
-                    <img class="imgView" src="/images/IMG_2066.JPG" alt="img"/>
-                    <div class="tname_cnt">
-                        <h3>Template</h3>
+                    <div class="prev">
+                        <img class="imgView" src="/images/IMG_2066.JPG" alt="img" />
+                        <div class="tname_cnt">
+                            <h3>Template</h3>
+                        </div>
+                    </div>
+
+                    <p class="des">This is a simaple template to work on</p>
+                    <div class="btns_cnt">
+                        <button class="btns2">Preview</button>
+                        <button class="btns2" style="background-color: rgb(67, 206, 245);">Download</button>
+                    </div>
+                </article>
+
+            </main>
+
+            <!--=============================================-->
+            <div id="dis" class="dissabler">
+                <div id="side_bar" class="side_bar">
+
+                    <!--------------PROFILE CARD START---------------------->
+                    <div class="profile_cnt">
+                        <img id="sidebar_close" class="sidebar_close_btn"
+                            src="/icons8-search-ios-17-filled/close_ic.png" />
+
+                        <div class="profile_cnt_column">
+
+                            <div class="profile_cnt_row">
+                                <img id="pp_img" class="side_profile_img" src="/images/IMG_2066.JPG" alt="profile" />
+
+                                <div class="username_bio_cnt">
+                                    <h1 id="profilename">Elktrum Elk</h1>
+                                    <span id="profileTag">@Vector Runner</span>
+                                </div>
+                            </div>
+
+                            <p id="profileBIo">Hey my name is Elkanah Cole and i am a frontend developer, developing
+                                better
+                                UX
+                                and clean UI with
+                                better responsiveness. i recommend you to contact me cause u won't regrete it. I am The
+                            </p>
+
+                        </div>
+                        <div class="holo_dust"></div>
+                        <!----------PROFILE CARD END-------------------------->
+                    </div> <!----------PROFILE CARD END-------------------------->
+                    <div class="f">
+                        <span id="following">Following 0</span>
+                        <span id="follower">Followers 0</span>
+                        <span id="product">Products 0</span>
+                    </div>
+
+                    <div class="settings_cnt">
+                        <h2>Account</h2>
+                        <span>Account <span>></span></span>
+                        <span>Privacy <span>></span></span>
+                        <span>Personal Information <span>></span></span>
+                    </div>
+
+                    <div class="settings_cnt">
+                        <h2>Media</h2>
+                        <span>Products <span>></span></span>
+                    </div>
+
+                    <div class="settings_cnt">
+                        <h2>Wallet</h2>
+                        <span>Wallet <span>></span></span>
+                        <span>Change Password <span>></span></span>
+                        <span>Stats<span>></span></span>
+                    </div>
+
+                    <div class="settings_cnt">
+                        <h2>Personal Preference</h2>
+                        <span>Theme: light
+                            <div id="toggle" class="theme_toggle">
+                                <div id="ctr" class="toggle_ctrl"></div>
+                            </div>
+                        </span>
+                        <span>font</span>
+                    </div>
+
+                    <div class="settings_cnt">
+                        <button id="logout"
+                            style="color: red; margin-block-end: 2rem; border-radius: 3rem; background-color: transparent; border: 1px solid gray; padding: 1rem 0rem;">Logout
+                        </button>
                     </div>
                 </div>
-
-                <p class="des">This is a simaple template to work on</p>
-                <div class="btns_cnt">
-                    <button class="btns2">Preview</button>
-                    <button class="btns2" style="background-color: rgb(67, 206, 245);">Download</button>
-                </div>
-            </article>
-
-        </main>
-
+            </div>
+        </div>
         <div id="q_a_c" class="quick_access_cnt">
             <span id="nav_marker" class="is_selected"></span>
             <img id="home" class="quick_access" src="/icons8-search-ios-17-filled/homeIc.png" alt="Home"
@@ -202,13 +203,15 @@
             <img id="search" class="quick_access" src="/icons8-search-ios-17-filled/icons8-search-150.png" alt="search"
                 draggable="false" />
         </div>
-        <footer class="foot"></footer>
+
     </div>
 
-    <script src="/script/script.js" type="module" async="true"></script>
-    <script src="/script/home.js" type="module" async="true"></script>
-    <script src="/script/productUpload.js" type="module" async="true"></script>
-    <script src="/script/logout.js" type="module" async="true"></script>
+
+
+    <script src="/script/script.js" type="module" async="true" defer></script>
+    <script src="/script/home.js" type="module" async="true" defer></script>
+    <script src="/script/productUpload.js" type="module" async="true" defer></script>
+    <script src="/script/logout.js" type="module" async="true" defer></script>
 </body>
 
 </html>

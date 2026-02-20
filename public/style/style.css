@@ -49,6 +49,7 @@ body {
 
 }
 
+
 .app {
 
     display: flex;
@@ -84,7 +85,6 @@ body {
     display: flex;
     align-items: center;
     border-radius: 3rem;
-
 }
 
 .search_cnt {
@@ -133,21 +133,34 @@ body {
     font-size: 1.1rem;
 }
 
-
-.main {
+.MainCnt {
 
     width: 99%;
-    display: grid;
-    grid-template-columns: repeat(1, .95fr);
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 1rem;
     overflow: hidden;
+
+}
+
+.main {
+
+    width: 99%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    overflow: hidden;
+
+
 }
 
 .template_card {
 
-    width: 100%;
+    width: 98%;
     height: 30rem;
     background-color: var(--card-bg);
     backdrop-filter: blur(5px);
@@ -160,6 +173,7 @@ body {
     align-items: center;
     padding: 1rem 0rem;
     gap: 1rem;
+   
 
 }
 
@@ -170,33 +184,38 @@ body {
     border-radius: 1.5rem;
     display: flex;
     flex-direction: column;
-    object-fit: cover;
+    object-fit: fill;
+
     overflow: hidden;
+    flex: 0 0 auto;
+
 }
 
+
 .tname_cnt {
+
     flex: 0 0 auto;
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 15rem;
     background-color: rgba(0, 0, 0, 0.361);
     color: white;
     font-weight: 500;
-    position: relative;
-    top: 0;
+    position: absolute;
     display: flex;
     place-items: center;
     place-content: center;
     font-family: sans-serif;
-    border-radius: 0rem;
+    border-radius: 1.5rem;
     opacity: 1;
     transition: opacity .5s ease;
-    z-index: 2;
-    transform: translateY(-100%);
 }
 
 .imgView {
-    width: 100%;
-    height: 100%;
+
+    height: 15rem;
+    object-fit: cover;
+    object-position: center;
+
 }
 
 .prev:hover {
@@ -205,8 +224,27 @@ body {
     }
 }
 
-.btns_cnt {
+@media (min-width: 481px) {
+    .template_card {
+        height: 35rem;
+    }
 
+    .prev {
+        height: 20rem;
+    }
+
+    .imgView {
+        height: 20rem;
+
+    }
+
+    .tname_cnt {
+        height: 20rem;
+    }
+}
+
+
+.btns_cnt {
     width: 90%;
     display: flex;
     align-items: center;
@@ -545,4 +583,101 @@ body {
     height: 1.5rem;
     background-color: gray;
     border-radius: 5rem;
+}
+
+@media (min-width: 920px) {
+
+    .MainCnt {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 1rem;
+        overflow: hidden;
+        margin-block-start: 8rem;
+
+    }
+
+
+    .dissabler {
+        display: flex;
+        flex-direction: column;
+        opacity: 1;
+
+        top: unset;
+        bottom: unset;
+        right: unset;
+        z-index: 3;
+        flex: 1;
+        width: 23rem;
+        height: 100dvh;
+        position: fixed;
+        top: 8rem;
+        right: 0;
+        background-color: transparent;
+
+    }
+
+    .side_bar {
+        transform: translateX(0%);
+        height: 100%;
+        width: 100%;
+        align-self: flex-end;
+
+    }
+
+    .sidebar_close_btn {
+        display: none;
+    }
+
+    .acc_setting {
+        display: none;
+    }
+
+    .template_card {
+
+        flex: 0;
+    }
+
+    .main {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: unset;
+        justify-content: unset;
+        width: 70%;
+        align-self: unset;
+
+
+    }
+
+    .section_links {
+        position: fixed;
+        top: 4.5rem;
+        z-index: 5;
+        background-color: var(--forground-el-cl);
+        backdrop-filter: blur(10px);
+
+
+    }
+
+    .head {
+        background-color: var(--forground-el-cl);
+        backdrop-filter: blur(10px);
+        position: fixed;
+        top: 0;
+        margin-block-start: 0rem;
+        padding-top: .7rem;
+    }
+
+    .imgView {
+        height: 15rem;
+    }
+
+    .prev {
+        height: 15rem;
+    }
+
+    .tname_cnt {
+        height: 15rem;
+    }
+
 }

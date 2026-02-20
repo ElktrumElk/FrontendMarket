@@ -1,0 +1,5 @@
+cheatengine.version = 1.2.41
+cheatengine.enabled = true
+cheatengine.memory = monitor
+cheatengine.balance = release
+

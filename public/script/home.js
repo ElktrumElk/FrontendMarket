@@ -31,20 +31,22 @@ async function fetchInfo() {
     pBio.innerText = info.userbio;
     pp.src = "/" + info.p_img_link;
     menuBtnImage.src = "/" + info.p_img_link;
-    follower.innerText = "Followers \n"+info.followers;
-    following.innerText = "Following \n"+info.following;
-    product.innerText = "Products \n"+info.products;
+    follower.innerText = "Followers \n" + info.followers;
+    following.innerText = "Following \n" + info.following;
+    product.innerText = "Products \n" + info.products;
 };
 
 fetchInfo();
+let loader;
 
-async function fetchposts() {
-    const res = await fetch("/get/posts?cursor=5", {
+async function fetchposts({ cursor = null }) {
+    const res = await fetch(cursor == null ? "/get/posts" : `/get/posts?cursor=${cursor - 1}`, {
         method: "GET",
     });
 
     const data = await res.json();
 
+    let ctr = 0;
     if (data.state === true) {
         Array.from(data.data).forEach(async inf => { /*post details */
 
@@ -52,13 +54,50 @@ async function fetchposts() {
                 method: "GET",
             });
 
-            const data = await res.json();
-            const info = JSON.parse(data); //user details
-            console.log(inf)
+            const data2 = await res.json();
+            const info = JSON.parse(data2); //user details
 
-            renderCard(MainGridElement, "/" + info.info.p_img_link, info.info.username, info.info.user_tag, inf.post_des, inf.post_name, inf.post_price, inf.post_img);
-        })
+            renderCard(MainGridElement, inf.id, "/" + info.info.p_img_link, info.info.username, info.info.user_tag, inf.post_des, inf.post_name, inf.post_price, `/${inf.post_img}`);
+            ctr += 1;
+            if (ctr == data.data.length - 1) {
+                loader = inf.id;
+                console.log(inf.id)
+            }
+        });
     };
 };
 
-fetchposts();
+
+fetchposts({ cursor: null }); //initial fetch
+
+//Comment: flag for another fetch prventing multi fetch oof the same kind
+let isFetched = false;
+
+//Comment: observer to fetch new posts
+const observer = new IntersectionObserver((ent) => {
+    if (ent[0].isIntersecting) {
+        if (loader) {
+            if (!isFetched) {
+                isFetched = true;
+                fetchposts({ cursor: loader }); //fetch
+                isFetched = false;
+                console.log("post fetched") //debugging
+            }
+        }
+    }
+});
+
+//listen to user scroll to perform fetch
+window.addEventListener("scroll", () => {
+    if (loader) {
+        if (!isFetched) {
+
+            console.log(loader)
+            const loaderObj = document.getElementById(`card${loader}`);
+
+            observer.observe(loaderObj);
+        }
+    }
+
+});
+
