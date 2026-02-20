@@ -302,7 +302,7 @@ app.get("/get/posts", async (req, res) => {
         console.log(res[1]);
     }
 });
-
-app.listen(3000, "0.0.0.0", () => {
+const PORT = process.env.PORT;
+app.listen(PORT || 3000, "0.0.0.0", () => {
     console.log("Server running on port 3000");
 })
