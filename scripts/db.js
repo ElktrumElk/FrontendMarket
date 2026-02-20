@@ -9,11 +9,6 @@ dotenv.config({
 */
 
 console.log("o", process.env.DB_KEY);
-export const db = mysql.createPool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_KEY,
-    database: process.env.DB_NAME
-});
+export const db = mysql.createPool(process.env.DBURL);
 
 export default db;
