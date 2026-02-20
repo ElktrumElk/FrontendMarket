@@ -3,7 +3,8 @@
     "type": "module",
     "scripts": {
         "db": "db.js",
-        "start": "node ./scripts/server/server1.js"
+        "start": "node ./scripts/server/server1.js",
+        "postinstall": "npm install msql2"
     },
     "module": "./db.js",
     "devDependencies": {
