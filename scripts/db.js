@@ -9,7 +9,7 @@ dotenv.config({
 */
 
 console.log("o", process.env.DB_KEY);
-export const db = mysql.createPool({
+export default const db = mysql.createPool({
       host: process.env.MYSQLHOST,
       user: process.env.MYSQLUSER,
       password: process.env.MYSQLPASSWORD,
@@ -17,4 +17,3 @@ export const db = mysql.createPool({
       port: process.env.MYSQLPORT,
     });
 
-export default db;
