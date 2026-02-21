@@ -10,11 +10,11 @@ dotenv.config({
 
 console.log("o", process.env.DB_KEY);
 const db = mysql.createPool({
-      host: process.env.MYSQLHOST,
+      host: "maglev.proxy.rlwy.net"
       user: process.env.MYSQLUSER,
       password: process.env.MYSQLPASSWORD,
       database: process.env.MYSQLDATABASE,
-      port: process.env.MYSQLPORT,
+      port: 25448,
     });
 export default db;
 
