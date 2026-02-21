@@ -20,6 +20,7 @@ export async function addUser(info) {
 
   }
   catch (e) {
+    console.log(e);
     return [false, `An error occur: ${e}`]
   }
 }

@@ -1,11 +1,12 @@
 import mysql from 'mysql2/promise';
 import dotenv from "dotenv";
 
+/*
 dotenv.config({
     path: "../../.env",
     quiet: true
 });
-
+*/
 
 console.log("o", process.env.MYSQLHOST);
 const db = mysql.createPool({
