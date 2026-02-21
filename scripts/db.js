@@ -10,10 +10,11 @@ dotenv.config({
 
 console.log("o", process.env.DB_KEY);
 const db = mysql.createPool({
-      host: "mysql-production-935c.up.railway.app",
+      host: process.env.MYSQLHOST,
       user: process.env.MYSQLUSER,
       password: process.env.MYSQLPASSWORD,
-      database: process.env.MYSQLDATABASE
+      database: process.env.MYSQLDATABASE,
+      port: process.env.MYSQLPORT
     });
 export default db;
 
