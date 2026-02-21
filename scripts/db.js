@@ -7,12 +7,12 @@ dotenv.config({
 });
 
 
-console.log("o", process.env.DB_KEY);
-export const db = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: process.env.DB_KEY,
-    database: 'frontendUsers'
-});
-
+console.log("o", process.env.MYSQLHOST);
+const db = mysql.createPool({
+      host: process.env.MYSQLHOST,
+      user: "root",
+      password: "lEaCVStCnmnVZVLYkBkgTwTXvmNYmLcV",
+      database:  "railway",
+      port: 3306
+    });
 export default db;
