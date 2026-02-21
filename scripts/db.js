@@ -14,7 +14,7 @@ const db = mysql.createPool({
       user: process.env.MYSQLUSER,
       password: process.env.MYSQLPASSWORD,
       database: process.env.MYSQLDATABASE,
-      port: 25448,
+      port: 3306,
     });
 export default db;
 
