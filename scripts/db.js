@@ -8,7 +8,7 @@ dotenv.config({
 });
 */
 
-console.log("o", process.env.DB_KEY);
+console.log("o", process.env.MYSQLHOST);
 const db = mysql.createPool({
       host: "mysql.railway.internal",
       user: "root",
