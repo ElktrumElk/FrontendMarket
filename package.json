@@ -1,19 +1,18 @@
 {
-    "name": "f_market",
-    "type": "module",
-    "scripts": {
-        "db": "db.js",
-        "start": "node ./scripts/server/server1.js",
-        "postinstall": "npm install msql2"
-    },
-    "module": "./db.js",
-    "devDependencies": {
-        "interacter": "^1.0.4"
-    },
-    "dependencies": {
-        "dotenv": "^17.3.1",
-        "express": "^5.2.1",
-        "express-session": "^1.19.0",
-        "multer": "^2.0.2"
-    }
+  "name": "f_market",
+  "type": "module",
+  "scripts": {
+    "db": "node db.js",
+    "start": "node ./scripts/server/server1.js"
+  },
+  "devDependencies": {
+    "interacter": "^1.0.4"
+  },
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "multer": "^2.0.2",
+    "mysql2": "^3.5.2"
+  }
 }
