@@ -9,6 +9,7 @@
     "interacter": "^1.0.4"
   },
   "dependencies": {
+    "cloudinary": "^2.9.0",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "express-session": "^1.19.0",

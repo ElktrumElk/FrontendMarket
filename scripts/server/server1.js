@@ -240,7 +240,6 @@ app.post("/api/user/createAccount", async (req, res) => {
             req.session.isLogin = true;
             req.session.user = username;
             req.session.userId = userId;
-
             res.json({ state: true, message: "Success", src: "/setup/profile" }); //sends data 
 
         } else {

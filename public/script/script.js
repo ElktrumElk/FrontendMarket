@@ -1,5 +1,5 @@
 import animatePanel from "./animate_panel.js";
-
+import { renderCard } from "./render_card.js";
 const card = document.getElementById("card");
 const main = document.getElementById("main");
 const quickAccessCnt = document.getElementById("q_a_c");
@@ -11,6 +11,10 @@ const sideBarDis = document.getElementById("dis");
 
 const qAnimation = quickAccessCnt.getAnimations()[0];
 
+for (let i = 0; i < 5; i += 1) {
+    const newCard = card.cloneNode(true);
+    main.appendChild(newCard);
+}
 
 /**
  * Function that close the side bar

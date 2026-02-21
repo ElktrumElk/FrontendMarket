@@ -8,7 +8,7 @@
     --text-cl: rgb(0, 0, 0);
     --card-bg: rgba(247, 250, 251, 0.473);
     --bell-bg: none;
-    --side-bar: rgb(255, 251, 251);
+    --side-bar: rgb(255, 255, 255);
     --dust-cl: rgba(244, 247, 250, 0.845);
 
 }
@@ -135,32 +135,25 @@ body {
 
 .MainCnt {
 
-    width: 99%;
-    display: flex;
-    flex-direction: column;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+
     align-items: center;
     justify-content: center;
     gap: 1rem;
     overflow: hidden;
-
 }
 
 .main {
-
-    width: 99%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    padding: .2rem;
+    grid-template-columns: 1fr;
     gap: 1rem;
-    overflow: hidden;
-
-
 }
 
 .template_card {
 
-    width: 98%;
     height: 30rem;
     background-color: var(--card-bg);
     backdrop-filter: blur(5px);
@@ -173,7 +166,7 @@ body {
     align-items: center;
     padding: 1rem 0rem;
     gap: 1rem;
-   
+
 
 }
 
@@ -270,6 +263,11 @@ body {
     font-family: sans-serif;
     font-size: 1rem;
     border: none;
+
+}
+
+.btns2:last-child {
+    background-color: rgb(67, 206, 245);
 }
 
 .profile {
@@ -585,7 +583,7 @@ body {
     border-radius: 5rem;
 }
 
-@media (min-width: 920px) {
+@media (min-width: 1025px) {
 
     .MainCnt {
         display: flex;
@@ -603,25 +601,25 @@ body {
         flex-direction: column;
         opacity: 1;
 
-        top: unset;
-        bottom: unset;
-        right: unset;
         z-index: 3;
         flex: 1;
-        width: 23rem;
+        width: 30%;
         height: 100dvh;
         position: fixed;
-        top: 8rem;
+        top: 7rem;
         right: 0;
         background-color: transparent;
 
     }
 
     .side_bar {
+        display: flex;
         transform: translateX(0%);
         height: 100%;
         width: 100%;
         align-self: flex-end;
+        border-radius: 0rem;
+
 
     }
 
@@ -680,4 +678,41 @@ body {
         height: 15rem;
     }
 
+}
+
+/*=============Comment: Ipad . medium ipads=======================*/
+@media (min-width: 600px) and (max-width: 920px), (orientation: landscape) {
+    .main {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/*=============Comment: Ipad pro. Large ipads=======================*/
+@media (min-width: 920px) and (max-width: 1024px) {
+    .main {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .btns2:last-child {
+        display: none;
+    }
+
+    .btns2 {
+        flex: 1;
+        background-color: rgb(67, 206, 245);
+    }
+}
+
+@media (max-width: 360px) {
+    .searc_icon {
+        display: none;
+    }
+
+    .btns2:last-child {
+        display: none;
+    }
+
+    .btns2 {
+        flex: 1;
+    }
 }
