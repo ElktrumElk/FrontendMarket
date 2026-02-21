@@ -11,9 +11,9 @@ dotenv.config({
 console.log("o", process.env.DB_KEY);
 const db = mysql.createPool({
       host: "mysql.railway.internal",
-      user: process.env.MYSQLUSER,
-      password: process.env.MYSQLPASSWORD,
-      database: process.env.MYSQLDATABASE,
+      user: "root",
+      password: "lEaCVStCnmnVZVLYkBkgTwTXvmNYmLcV",
+      database:  "railway",
       port: 3306
     });
 export default db;
