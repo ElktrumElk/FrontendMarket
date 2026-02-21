@@ -60,7 +60,7 @@ app.get("/", (req, res) => {
     res.redirect("/log");
 })
 app.get("/log", (req, res) => {
-
+ 
     if (req.session.isLogin) {
         res.sendFile(path.join(__dirname, "../../home.html"));
     }
@@ -76,6 +76,9 @@ app.get("/home", (req, res) => {
     else {
         res.sendFile(path.join(__dirname, "../../home.html"));
     }
+    
+    
+    
 });
 
 app.get("/creatAccount", (req, res) => {
@@ -93,7 +96,7 @@ const upload = multer({ storage: storage });
 
 
 app.post("/login", async (req, res) => {
-
+ try {
     const username = req.body.username;
     const pwd = req.body.password;
 
@@ -112,6 +115,10 @@ app.post("/login", async (req, res) => {
         req.session.isLogin = false;
         res.redirect("/log");
     }
+    }
+    catch (e) {
+        console.error("An error occur", e);
+        }
 });
 
 app.post("/api/user", async (req, res) => {
