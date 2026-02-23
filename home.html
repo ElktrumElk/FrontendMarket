@@ -7,9 +7,9 @@
 
     <title>Frontend Market</title>
 
-    <link rel="stylesheet" href="/style/add_templates.css">
-    <link rel="stylesheet" href="/style/style.css">
-    <link rel="stylesheet" href="/style/demo.css">
+    <link rel="stylesheet" href="./public/style/add_templates.css">
+    <link rel="stylesheet" href="./public/style/style.css">
+    <link rel="stylesheet" href="./public/style/demo.css">
 </head>
 
 <body>
@@ -66,7 +66,7 @@
     <div class="app">
 
         <header class="head">
-            <h1 class="logoName">Frontend Market</h1>
+            <h1 id="logo" class="logoName">Frontend Market</h1>
 
             <div class="search_cnt">
                 <img class="searc_icon" src="/icons8-search-ios-17-filled/bell_ic_dark.png" alt="bell" />
@@ -114,7 +114,7 @@
                     <p class="des">This is a simaple template to work on</p>
                     <div class="btns_cnt">
                         <button class="btns2">Preview</button>
-                        <button class="btns2" style="background-color: rgb(67, 206, 245);">Download</button>
+                        <button class="btns2">Download</button>
                     </div>
                 </article>
 
@@ -152,9 +152,9 @@
                         <!----------PROFILE CARD END-------------------------->
                     </div> <!----------PROFILE CARD END-------------------------->
                     <div class="f">
-                        <span id="following">Following 0</span>
-                        <span id="follower">Followers 0</span>
-                        <span id="product">Products 0</span>
+                        <span><Strong><span id="following">700</span></strong> <br> Following</span>
+                        <span><strong><span id="follower">0</span></strong> <br> Followers</span>
+                        <span><strong><span id="product">0</span></strong> <br> Products</span>
                     </div>
 
                     <div class="settings_cnt">
@@ -206,12 +206,13 @@
 
     </div>
 
+    <div id="touch" class="touch_effect"></div>
 
-
-    <script src="/script/script.js" type="module" async="true" defer></script>
+    <script src="./public/script/script.js" type="module" async="true" defer></script>
     <script src="/script/home.js" type="module" async="true" defer></script>
     <script src="/script/productUpload.js" type="module" async="true" defer></script>
     <script src="/script/logout.js" type="module" async="true" defer></script>
+    <script src="./public/script/touch_effect.js" async="true" defer></script>
 </body>
 
 </html>

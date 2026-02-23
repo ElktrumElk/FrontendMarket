@@ -6,10 +6,12 @@
     --forground-el-cl-c: rgb(208, 209, 210);
     --nav-link-cl: transparent;
     --text-cl: rgb(0, 0, 0);
+    --text-cl-a: rgb(0, 0, 0);
+
     --card-bg: rgba(247, 250, 251, 0.473);
     --bell-bg: none;
     --side-bar: rgb(255, 255, 255);
-    --dust-cl: rgba(244, 247, 250, 0.845);
+    --dust-cl: rgba(255, 255, 255, 0.845);
 
 }
 
@@ -26,6 +28,8 @@ body.dark {
 
     --nav-link-cl: transparent;
     --text-cl: rgb(232, 232, 232);
+    --text-cl-a: rgb(32, 32, 32);
+
     --card-bg: rgba(30, 30, 31, 0.473);
     --side-bar: rgba(30, 30, 31, 0.473);
     color: rgb(232, 232, 232);
@@ -85,6 +89,8 @@ body {
     display: flex;
     align-items: center;
     border-radius: 3rem;
+    animation: bubble 1s 1;
+    animation-play-state: paused;
 }
 
 .search_cnt {
@@ -107,6 +113,7 @@ body {
     border-radius: 10rem;
     padding: .2rem .2rem;
     background-color: var(--bell-bg);
+    cursor: pointer;
 }
 
 .section_links {
@@ -155,7 +162,7 @@ body {
 .template_card {
 
     height: 30rem;
-    background-color: var(--card-bg);
+    background-color: transparent;
     backdrop-filter: blur(5px);
 
     border: 1px solid rgba(95, 94, 94, 0.379);
@@ -168,7 +175,61 @@ body {
     gap: 1rem;
 
 
+
 }
+
+.touch_effect {
+    visibility: hidden;
+    width: 5rem;
+    height: 5rem;
+    background: radial-gradient(circle, rgb(255, 255, 255) 1%, rgba(39, 147, 255, 0.854) 2%, transparent 3%);
+
+    background-color: transparent;
+    background-repeat: no-repeat;
+
+    transition: background 1s ease;
+    border-radius: 5rem;
+    position: fixed;
+    animation: spill .3s 1;
+    animation-play-state: paused;
+    z-index: 5;
+    pointer-events: none;
+
+}
+
+
+
+@keyframes spill {
+    0% {
+        background: radial-gradient(circle, gray 1%, rgba(39, 147, 255, 0.854) 4%, transparent 6%);
+        
+    }
+
+    20% {
+        background: radial-gradient(circle, rgba(128, 128, 128, 0.63) 2%, rgba(39, 147, 255, 0.854) 8%, transparent 10%);
+    }
+
+    40% {
+        background: radial-gradient(circle, rgba(128, 128, 128, 0.317) 3%, rgba(39, 147, 255, 0.854) 12%, transparent 14%);
+    }
+
+    60% {
+        background: radial-gradient(circle, rgba(128, 128, 128, 0.148) 10%, rgba(39, 147, 255, 0.854) 16%, transparent 18%);
+    }
+
+    80% {
+        background: radial-gradient(circle, rgba(128, 128, 128, 0.315) 15%, rgba(39, 147, 255, 0.854) 20%, transparent 22%);
+    }
+
+    90% {
+        background: radial-gradient(circle, rgba(128, 128, 128, 0.253) 20%, rgba(255, 255, 255, 0.854) 24%, transparent 26%);
+    }
+
+    100% {
+        background: radial-gradient(circle, rgba(128, 128, 128, 0) 25%, rgba(255, 255, 255, 0.854) 28%, transparent 30%);
+    }
+}
+
 
 .prev {
     width: 90%;
@@ -258,7 +319,7 @@ body {
     background-color: var(--forground-el-cl-c);
 
     border-radius: 1rem;
-    color: var(--text-cl);
+    color: var(--text-cl-a);
     font-weight: bolder;
     font-family: sans-serif;
     font-size: 1rem;
@@ -410,7 +471,6 @@ body {
     background-color: var(--side-bar);
     backdrop-filter: blur(1px);
     border-left: 1px solid rgb(99, 99, 99);
-    border-top-left-radius: 2rem;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -422,6 +482,7 @@ body {
 
 }
 
+/*Holds th euser profile image and it other container section which is the username, usertag and userbio*/
 .profile_cnt {
 
     flex: 0 0 auto;
@@ -432,7 +493,7 @@ body {
     flex-direction: column;
     padding: .1rem .5rem;
     gap: .2rem;
-
+    border-radius: .3rem;
 }
 
 .sidebar_close_btn {
@@ -453,9 +514,12 @@ body {
 
     width: 100%;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: .5rem;
 }
 
+/*Holds the profile in columnn*/
 .profile_cnt_column {
 
     width: 100%;
@@ -466,6 +530,8 @@ body {
     padding: .2rem .2rem;
     margin-block-start: 1rem;
     overflow-y: auto;
+
+    border-radius: 1rem;
 }
 
 .side_profile_img {
@@ -479,32 +545,42 @@ body {
 
 }
 
+/*holds the username and it usertag*/
 .username_bio_cnt {
     flex: 1;
     display: flex;
     flex-direction: column;
-
+    align-items: center;
     gap: .1rem;
     max-height: 80px;
     overflow: hidden;
 }
 
 .username_bio_cnt>h1 {
+
     font-family: sans-serif;
+    font-size: 1.4rem;
     margin: 0;
     margin-block-start: .5rem;
+
 }
 
 .username_bio_cnt>span {
     font-family: sans-serif;
+    font-size: 1rem;
     margin: 0;
     color: gray;
+    margin-block-end: 1rem;
+
 }
 
+
+/*Bio*/
 .profile_cnt_column>p {
     margin: 0;
     font-family: sans-serif;
     font-size: .9rem;
+    text-align: center;
 
 }
 
@@ -517,20 +593,28 @@ body {
     border-radius: 1rem;
 }
 
+/*Followers cnt*/
 .f {
     margin-block-start: 1rem;
     width: 100%;
     display: flex;
-    justify-content: space-between;
-
-}
-
-.f>span {
-    width: 5rem;
+    justify-content: space-around;
+    color: gray;
     font-family: sans-serif;
     word-wrap: break-word;
     text-align: center;
+    font-size: .9rem;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.886);
+    border-radius: 1rem;
 }
+
+.f strong {
+    width: 5rem;
+    color: var(--text-cl);
+
+}
+
+
 
 .settings_cnt {
     margin-block-start: 1rem;
@@ -541,6 +625,8 @@ body {
 
     font-family: sans-serif;
     color: var(--text-cl);
+    background-color: transparent;
+    padding: 1rem .2rem;
 
 }
 
@@ -583,6 +669,8 @@ body {
     border-radius: 5rem;
 }
 
+
+/*===========================LArger screens =========================*/
 @media (min-width: 1025px) {
 
     .MainCnt {
@@ -681,7 +769,8 @@ body {
 }
 
 /*=============Comment: Ipad . medium ipads=======================*/
-@media (min-width: 600px) and (max-width: 920px), (orientation: landscape) {
+@media (min-width: 600px) and (max-width: 920px),
+(orientation: landscape) {
     .main {
         grid-template-columns: 1fr 1fr;
     }

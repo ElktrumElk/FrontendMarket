@@ -8,13 +8,16 @@ const menuBtn = document.getElementById("acc_menu");
 const menuClsBtn = document.getElementById("sidebar_close");
 const sideBar = document.getElementById("side_bar");
 const sideBarDis = document.getElementById("dis");
+const logo = document.getElementById("logo");
 
 const qAnimation = quickAccessCnt.getAnimations()[0];
+const logoAnimation = logo.getAnimations()[0];
 
 for (let i = 0; i < 5; i += 1) {
     const newCard = card.cloneNode(true);
     main.appendChild(newCard);
 }
+
 
 /**
  * Function that close the side bar
@@ -38,9 +41,9 @@ function closeSideBar() {
 
 
 
-
-
-
+/**=====================================ANIMATION SECTION=================================
+ * =====================================/\==============/\================================
+*/
 quickAccessCnt.addEventListener("click", () => {
 
     qAnimation.cancel();
@@ -48,11 +51,18 @@ quickAccessCnt.addEventListener("click", () => {
 
 });
 
+logo.addEventListener("click", () => {
+    logoAnimation.cancel();
+    logoAnimation.play();
+});
+
+
 let isMove = false;
 let currentPos = 0;
 navMarker.addEventListener("touchstart", (e) => {
 
     isMove = true;
+    qAnimation.cancel();
 
 })
 
@@ -92,7 +102,7 @@ quickAccessCnt.addEventListener("touchmove", (e) => {
 
 document.body.addEventListener("touchend", () => {
     if (isMove) {
-
+        qAnimation.play();
         isMove = false;
 
         if (currentPos > 40.3333 && currentPos < 70) {
