@@ -13,7 +13,7 @@ const logo = document.getElementById("logo");
 const qAnimation = quickAccessCnt.getAnimations()[0];
 const logoAnimation = logo.getAnimations()[0];
 
-for (let i = 0; i < 5; i += 1) {
+for (let i = 0; i < 3; i += 1) {
     const newCard = card.cloneNode(true);
     main.appendChild(newCard);
 }

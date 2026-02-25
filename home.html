@@ -7,6 +7,12 @@
 
     <title>Frontend Market</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=DM+Serif+Text:ital@0;1&family=PT+Serif+Caption:ital@0;1&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="/style/add_templates.css">
     <link rel="stylesheet" href="/style/style.css">
     <link rel="stylesheet" href="/style/demo.css">
@@ -57,12 +63,15 @@
             </select>
 
         </div>
+
+
         <div class="label_inp">
             <button id="cancel_add" class="upload_btn">Cancel</button>
             <button id="uploadBtn" class="upload_btn" style="margin-inline-start: auto;">Upload</button>
         </div>
     </div>
 
+    <!--============================THE MAIN SCREEN=======================-->
     <div class="app">
 
         <header class="head">
@@ -75,20 +84,50 @@
 
         </header>
 
-        <nav class="section_links">
+        <h2 class="message"><span style="color: rgb(3, 169, 245);">Descover</span> tons of templates with an easy click
+        </h2>
 
-            <a class="links">Landing Page</a>
-            <a class="links">Portfolio</a>
-            <a class="links">Ecommerce</a>
-            <a class="links">Admin Dashboard</a>
-            <a class="links">Blog / Magazine</a>
-            <a class="links">Documentation / knowledge Base</a>
-            <a class="links">Saas / Product</a>
-            <a class="links">Corporate / Business</a>
-            <a class="links">Email / Newsletter</a>
-            <a class="links">Event / Conference</a>
+        <nav class="section_links">
+            <span class="filter">Filter</span>
+            <select class="links">
+
+                <option>All</option>
+                <option>Ecommerce</option>
+                <option>Admin Dashboard</option>
+                <option>Blog / Magazine</option>
+                <option>Documentation / knowledge Base</option>
+                <option>Saas / Product</option>
+                <option>Corporate / Business</option>
+                <option>Email / Newsletter</option>
+                <option>Event / Conference</option>
+            </select>
+            <!-- <a class="links">Landing Page</option>
+            -->
 
         </nav>
+
+        <!--=================INPUT SEARCH=================-->
+        <input class="search_inp" type="search" placeholder="Search..." />
+        <!--Recommended template-->
+        <h3 id="rec">Recommend</h3>
+        <div class="xyz">
+            <article class="template_cardX">
+                <div class="prevX">
+                    <img class="imgView" src="/images/IMG_2066.JPG" alt="img" />
+                    <div class="tname_cnt">
+                        <h3>Template</h3>
+                    </div>
+            </article>
+
+            <article class="template_cardX">
+                <div class="prev">
+                    <img class="imgView" src="/images/IMG_2066.JPG" alt="img" />
+                    <div class="tname_cnt">
+                        <h3>Template</h3>
+                    </div>
+            </article>
+        </div>
+
         <div class="MainCnt">
             <main id="main" class="main">
 
@@ -208,11 +247,11 @@
 
     <div id="touch" class="touch_effect"></div>
 
-    <script src="/script/script.js" type="module" async="true" defer></script>
+    <script src="./public/script/script.js" type="module" async="true" defer></script>
     <script src="/script/home.js" type="module" async="true" defer></script>
-    <script src="/script/productUpload.js" type="module" async="true" defer></script>
-    <script src="/script/logout.js" type="module" async="true" defer></script>
-    <script src="/script/touch_effect.js" async="true" defer></script>
+    <script src="./public/script/productUpload.js" type="module" async="true" defer></script>
+    <script src="./public/script/logout.js" type="module" async="true" defer></script>
+    <script src="./public/script/touch_effect.js" async="true" defer></script>
 </body>
 
 </html>

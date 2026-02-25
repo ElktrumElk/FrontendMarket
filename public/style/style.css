@@ -4,7 +4,7 @@
     --forground-el-cl: rgba(238, 245, 249, 0.418);
     --forground-el-cl-b: rgba(194, 192, 192, 0.418);
     --forground-el-cl-c: rgb(208, 209, 210);
-    --nav-link-cl: transparent;
+    --nav-link-cl: rgba(211, 218, 219, 0.37);
     --text-cl: rgb(0, 0, 0);
     --text-cl-a: rgb(0, 0, 0);
 
@@ -12,7 +12,8 @@
     --bell-bg: none;
     --side-bar: rgb(255, 255, 255);
     --dust-cl: rgba(255, 255, 255, 0.845);
-
+    --bottom-blue: rgba(61, 185, 243, 0.719);
+    --msg-cl: rgba(18, 18, 18, 0.719);
 }
 
 * {
@@ -36,36 +37,30 @@ body.dark {
     --bell-bg: rgb(205, 204, 204);
     --new: rgb(14, 220, 14);
     --dust-cl: rgba(0, 0, 0, 0.358);
-
+    --msg-cl: rgba(132, 203, 250, 0.961);
 
 }
+
+
 
 body {
 
     background: var(--bg-color);
-    display: flex;
-    width: 99.5dvw;
-    flex-direction: column;
-    align-items: center;
     overflow-x: hidden;
-    margin: 0;
     height: fit-content;
-
 }
 
 
 .app {
-
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-
+    gap: 1rem;
 }
 
 .head {
 
-    width: 99%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -117,11 +112,12 @@ body {
 }
 
 .section_links {
-    width: 97%;
+
     padding: .3rem .3rem;
     display: flex;
-    gap: .5rem;
-    overflow-x: auto;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
 
 }
 
@@ -129,15 +125,94 @@ body {
     display: none;
 }
 
+
 .links {
-    flex: 0 0 auto;
+    flex: 0 2 auto;
     padding: .5rem 1rem;
-    background-color: var(--nav-link-cl);
-    text-decoration: none;
+    background: linear-gradient(to left, rgb(19, 161, 231) 30%, rgb(170, 211, 231) 20%, var(--nav-link-cl) 40%);
     color: var(--text-cl);
     font-family: sans-serif;
     border-radius: 2rem;
     font-size: 1.1rem;
+    width: 10rem;
+    border-bottom: 1px solid rgba(61, 185, 243, 0.719);
+    border-radius: .5rem;
+}
+
+.filter {
+    font-size: 2rem;
+    font-family: "Bai Jamjuree", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: gray;
+
+}
+
+.search_inp {
+    width: 90%;
+    padding: 1rem 1rem;
+    border-radius: 1rem;
+    background: linear-gradient(to bottom left, var(--forground-el-cl) 70%, rgb(19, 161, 231), rgba(104, 104, 105, 0.575));
+    font-size: 1.3rem;
+    border: none;
+    border-bottom: 1px solid var(--bottom-blue);
+
+}
+
+.message {
+    width: 20rem;
+    text-align: center;
+    font-size: 2rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: var(--msg-cl);
+}
+
+.xyz {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 1rem;
+    overflow: auto;
+    
+}
+
+#rec {
+    align-self: flex-start;
+    font-size: 1.5rem;
+    color: gray;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.template_cardX {
+    flex: 0 0 auto;
+    width: 100%;
+    background-color: transparent;
+    backdrop-filter: blur(5px);
+
+    border: 1px solid rgba(95, 94, 94, 0.379);
+    border-radius: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0rem;
+    gap: 1rem;
+}
+
+.prevX {
+
+    width: 90%;
+    height: 15rem;
+    background-color: rgba(97, 97, 97, 0.493);
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    object-fit: fill;
+
+    overflow: hidden;
+    flex: 0 0 auto;
+
 }
 
 .MainCnt {
@@ -157,6 +232,16 @@ body {
     padding: .2rem;
     grid-template-columns: 1fr;
     gap: 1rem;
+
+}
+
+.main:first-child::before {
+    content: "For you";
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: gray;
+    margin-block-start: 1rem;
 }
 
 .template_card {
@@ -173,12 +258,11 @@ body {
     align-items: center;
     padding: 1rem 0rem;
     gap: 1rem;
-
-
-
 }
 
+
 .touch_effect {
+
     visibility: hidden;
     width: 5rem;
     height: 5rem;
@@ -202,7 +286,7 @@ body {
 @keyframes spill {
     0% {
         background: radial-gradient(circle, gray 1%, rgba(39, 147, 255, 0.854) 4%, transparent 6%);
-        
+
     }
 
     20% {
@@ -232,6 +316,7 @@ body {
 
 
 .prev {
+
     width: 90%;
     height: 15rem;
     background-color: rgba(97, 97, 97, 0.493);
@@ -310,6 +395,12 @@ body {
     margin-inline-start: auto;
     color: var(--text-cl);
     font-family: sans-serif;
+    padding: .1rem 1rem;
+    height: 2rem;
+    background: rgba(145, 145, 145, 0.808);
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
 }
 
 .btns2 {
