@@ -29,8 +29,8 @@ async function fetchInfo() {
     pName.innerText = info.username;
     pTag.innerText = info.user_tag;
     pBio.innerText = info.userbio;
-    pp.src = "/" + info.p_img_link;
-    menuBtnImage.src = "/" + info.p_img_link;
+    pp.src = info.p_img_link;
+    menuBtnImage.src = info.p_img_link;
     follower.innerText = "Followers \n" + info.followers;
     following.innerText = "Following \n" + info.following;
     product.innerText = "Products \n" + info.products;
@@ -57,7 +57,7 @@ async function fetchposts({ cursor = null }) {
             const data2 = await res.json();
             const info = JSON.parse(data2); //user details
 
-            renderCard(MainGridElement, inf.id, "/" + info.info.p_img_link, info.info.username, info.info.user_tag, inf.post_des, inf.post_name, inf.post_price, `/${inf.post_img}`);
+            renderCard(MainGridElement, inf.id, info.info.p_img_link, info.info.username, info.info.user_tag, inf.post_des, inf.post_name, inf.post_price, `${inf.post_img}`);
             ctr += 1;
             if (ctr == data.data.length - 1) {
                 loader = inf.id;
